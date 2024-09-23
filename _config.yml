@@ -11,7 +11,7 @@ locale                   : "en-US"
 title                    : "Tong Chen's Homepage"
 title_separator          : "-"
 name                     : &name "Tong Chen"
-description              : &description "Undergraduate in Computer Science @ Fudan University"
+description              : &description "Undergraduate @ Fudan University"
 url                      : https://ctdancer.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "CTDancer.github.io"
@@ -24,7 +24,7 @@ author:
   avatar           : "profile.png"
   name             : "Tong Chen"
   pronouns         : # example: "she/her"  
-  bio              : "Undergraduate in Computer Science @ Fudan University"
+  bio              : "Undergraduate @ Fudan University"
   location         : "Shanghai, China"
   employer         : 
   uri              : # URL
