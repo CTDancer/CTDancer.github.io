@@ -21,7 +21,7 @@ repository               : "CTDancer.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "headshot.png"
+  avatar           : "C:\Users\Life_Dancer\Desktop\CTDancer.github.io\images\headshot.jpg"
   name             : "Tong Chen"
   pronouns         : # example: "she/her"  
   bio              : "Undergraduate in Computer Science @ Fudan University"
