@@ -9,15 +9,12 @@ redirect_from:
 
 {% include base_path %}
 
-## CV
 Please kindly find my full resume [here](/files/TongChen_CV.pdf).
 
 ## Education
-======
 * Sep 2019 - Present: B.S. Student of Computer Science and Technology, Fudan University
 
 ## Research experience
-======
 * Summer 2024: Motif-specific Binder Design
 
 * Spring 2024: Homo-UOX Variants Design
