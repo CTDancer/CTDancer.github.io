@@ -18,4 +18,4 @@ My research experience spans Computer Vision, Large Language Models, and AI for 
 
 - 08/2024: Delighted to give two invited talks at BME@Duke.
 - 06/2024: Excited to join [Chatterjee Lab](https://www.chatterjeelab.com/)@Duke as a research intern.
-- 07/2024: Excited to join [Qing Yuan Research Institute](http://www.qingyuan.sjtu.edu.cn/en)@SJTU as a research intern.
+- 07/2022: Excited to join [Qing Yuan Research Institute](http://www.qingyuan.sjtu.edu.cn/en)@SJTU as a research intern.

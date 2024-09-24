@@ -5,32 +5,15 @@ permalink: /publications/
 author_profile: true
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
-
-{% include base_path %}
-
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
+<div style="display: flex; align-items: center;">
+  <img src="{{ site.baseurl }}/images/DGS.png" alt="Image" style="width: 40%; margin-right: 20px;">
+  <div>
+    <h3>Structure-based Molecular Generation: A New Paradigm Enables Efficient Design of Potent CLIP1-LTK Inhibitors</h3>
+    <p><strong>Authors:</strong> Peichen Pan*, ShiCheng Chen*, Odin Zhang*, ..., Tingjun Hou</p>
+    <p><em>Cell, Submitted</em></p>
+    <p>We extend the Delete model to Casual-Delete model, successfully designing potent inhibitors targeting LTK.</p>
+  </div>
+</div>
 
 
 
