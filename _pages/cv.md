@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-Please kindly find my full resume [here](/files/TongChen_CV.pdf).
+Please kindly find my full resume [here](/files/CV_Tong_Chen.pdf).
 
 ## Education
 * Sep 2021 - Present: B.S. Student of Computer Science and Technology, Fudan University
