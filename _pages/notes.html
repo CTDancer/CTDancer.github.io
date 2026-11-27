@@ -1,0 +1,48 @@
+---
+layout: default
+title: "Learning Notes"
+permalink: /notes/
+author_profile: false
+---
+<main class="notes-shell">
+<header class="notes-hero">
+<p class="notes-kicker">Personal knowledge base</p>
+<h1>Learning Notes</h1>
+<p>Exploring the foundations of mathematics, physics, chemistry, biology, artificial intelligence, and computational science. A living collection of study notes, not peer-reviewed research.</p>
+</header>
+<div class="notes-search">
+<label for="note-query">Search learning notes</label>
+<input id="note-query" type="search" placeholder="Search titles, tags, concepts, and full text…" autocomplete="off" disabled data-index="{{ '/notes/search.json' | relative_url }}">
+<p id="note-search-status" role="status" aria-live="polite">Browse by subject below. Search loads when JavaScript is available.</p>
+</div>
+<nav class="notes-topics" aria-label="Note subjects">
+{% for topic in site.data.note_topics %}
+{% assign topic_notes = site.notes | where: "category", topic.name %}
+<a href="#topic-{{ topic.name | slugify }}" class="notes-topic"><strong>{{ topic.name | escape }}</strong><span>{{ topic.description | escape }}</span><small>{{ topic_notes.size }} {% if topic_notes.size == 1 %}note{% else %}notes{% endif %}</small></a>
+{% endfor %}
+</nav>
+{% assign groups = site.notes | group_by: "category" | sort: "name" %}
+{% for topic in site.data.note_topics %}
+{% assign entries = site.notes | where: "category", topic.name | sort: "date" | reverse %}
+<section class="notes-group" id="topic-{{ topic.name | slugify }}">
+<h2>{{ topic.name | escape }}</h2>
+{% for note in entries %}
+{% include note-card.html note=note %}
+{% else %}
+<p class="notes-empty">Notes will be added as I study this subject.</p>
+{% endfor %}
+</section>
+{% endfor %}
+{% for group in groups %}
+{% assign names = site.data.note_topics | map: "name" %}
+{% unless names contains group.name %}
+<section class="notes-group" id="topic-{{ group.name | slugify }}">
+<h2>{{ group.name | default: "Other" | escape }}</h2>
+{% assign entries = group.items | sort: "date" | reverse %}
+{% for note in entries %}{% include note-card.html note=note %}{% endfor %}
+</section>
+{% endunless %}
+{% endfor %}
+<p id="notes-no-results" hidden>No matching notes. Try a broader search.</p>
+</main>
+<script defer src="{{ '/assets/js/notes.js' | relative_url }}"></script>

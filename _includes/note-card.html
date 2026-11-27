@@ -1,0 +1,6 @@
+{% assign n = include.note %}
+<article class="note-card" data-note-url="{{ n.url | relative_url | escape }}">
+<h3><a href="{{ n.url | relative_url }}">{{ n.title | escape }}</a></h3>
+{% if n.summary %}<p>{{ n.summary | escape }}</p>{% endif %}
+<p class="note-meta">{% if n.date %}{{ n.date | date: "%b %d, %Y" }}{% endif %}{% for tag in n.tags %}<span>{{ tag | escape }}</span>{% endfor %}</p>
+</article>

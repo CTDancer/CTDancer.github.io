@@ -1,21 +1,31 @@
 ---
 permalink: /
-title: ""
-excerpt: "About me"
+title: "About Me"
+excerpt: "Tong Chen — Ph.D. student at the University of Pennsylvania"
 author_profile: true
-redirect_from: 
+redirect_from:
   - /about/
   - /about.html
 ---
-# **About Me**
-Hi, I'm Tong Chen!
 
-I am a senior undergraduate majoring in Computer Science at Fudan University. Currently, I am a research intern at [Chatterjee Lab](https://www.chatterjeelab.com/) at Duke University, advised by [Prof. Pranam Chatterjee](https://bme.duke.edu/people/pranam-chatterjee/). Previously, I interned at [Qing Yuan Research Institute](http://www.qingyuan.sjtu.edu.cn/en) at SJTU under the guidance of [Prof. Dequan Wang](https://dequan.wang/). 
+Hi, I'm Tong Chen! I am a Ph.D. student in Computer and Information Science at the **University of Pennsylvania**, advised by Prof. Pranam Chatterjee in the [Chatterjee Lab](https://www.chatterjeelab.com/).
 
-My research experience spans Computer Vision, Large Language Models, and AI for biology. I am now dedicated to leveraging AI to accelerate drug discovery and development while improving success rates. My life goal is to cure diseases and alleviate suffering for all living beings, and I am committed to making this a reality.
+My research interests lie at the intersection of **generative modeling, multi-objective optimization, and AI for biomolecular design**. I develop machine learning methods for designing and optimizing biological molecules, with the goal of accelerating drug discovery and translating computational advances into useful biological functions.
 
-## **News**
+I received my B.S. in Computer Science from Fudan University in June 2025. Previously, I was a research intern in the Chatterjee Lab at Duke University (2024–2025) and at the Qing Yuan Research Institute (2022–2024), advised by Prof. Dequan Wang and Prof. Zhijie Deng.
 
-- 08/2024: Delighted to give two invited talks at BME@Duke.
-- 06/2024: Excited to join [Chatterjee Lab](https://www.chatterjeelab.com/)@Duke as a research intern.
-- 07/2022: Excited to join [Qing Yuan Research Institute](http://www.qingyuan.sjtu.edu.cn/en)@SJTU as a research intern.
+## News
+
+- **2026:** pCoMole accepted to the NeurIPS 2026 main conference.
+- **2026:** PeptiVerse published in Nature Communications (17, 6819).
+- **2026:** PIGEON accepted to the ICML GenBio Workshop.
+- **2026:** moPPIt, AReUReDi, and LaPep listed in the ICLR 2026 workshops (see [Publications](/publications/)).
+- **September 2025:** Started my Ph.D. at the University of Pennsylvania.
+- **2025:** MOG-DFM received a spotlight at the ICML GenBio Workshop.
+- **June 2025:** Graduated from Fudan University.
+- **August 2024:** Gave two invited talks at BME@Duke.
+- **June 2024:** Joined the Chatterjee Lab at Duke University as a research intern.
+
+## Learning Notes
+
+I maintain a growing [collection of learning notes](/notes/) on mathematics, physics, chemistry, biology, artificial intelligence, and computational science. The notes are intended as a personal reference and a resource for others interested in these topics.

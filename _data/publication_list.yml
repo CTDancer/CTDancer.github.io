@@ -1,0 +1,54 @@
+- title: "pCoMole: Pareto-Constrained Molecule Editing with Discrete Flows"
+  authors: "Tong Chen*, Maximilian Holsman*, Lin Zhao, Pranam Chatterjee"
+  venue: "NeurIPS 2026 (Main Conference)"
+  year: 2026
+  type: Conference
+  paper: "https://arxiv.org/abs/2610.01663"
+- title: "PeptiVerse: A Unified Platform for Therapeutic Peptide Property Prediction"
+  authors: "Yinuo Zhang, Sophia Tang, Tong Chen, Elizabeth Mahood, Sophia Vincoff, Pranam Chatterjee"
+  venue: "Nature Communications, 17, 6819 (2026)"
+  year: 2026
+  type: Journal
+  paper: "https://www.nature.com/articles/s41467-026-74167-w"
+- title: "PIGEON: Pocket-Inferred Geometric Ensemble Flexible Docking"
+  authors: "Tong Chen, Maximilian Holsman, Pranam Chatterjee"
+  venue: "ICML 2026 GenBio Workshop (Generative and Agentic AI for Biology)"
+  year: 2026
+  type: Workshop
+  paper: "https://openreview.net/forum?id=tEybDjVvsB"
+- title: "moPPIt: De Novo Generation of Motif-Specific and Functionally Active Peptide Binders via Discrete Flow Matching"
+  authors: "Tong Chen*, Zachary Quinn*, Kunal Mishra*, Erin C. O’Connor*, Sophia E. Silver, Yinuo Zhang, Mary Jo Valencia, Ying Mei, Jacques Behmoaras, Leonardo M.R. Ferreira, Pranam Chatterjee"
+  venue: "ICLR 2026 Workshops"
+  year: 2026
+  type: Workshop
+  paper: "https://www.biorxiv.org/content/10.1101/2024.07.31.606098v2"
+- title: "AReUReDi: Annealed Rectified Updates for Refining Discrete Flows with Multi-Objective Guidance"
+  authors: "Tong Chen, Yinuo Zhang, Sophia Vincoff, Pranam Chatterjee"
+  venue: "ICLR 2026 Workshops"
+  year: 2026
+  type: Workshop
+  paper: "https://openreview.net/forum?id=iCIGJ1UKoB"
+- title: "LaPep: Can Language Contribute to Property-Guided Peptide Design?"
+  authors: "Kimberly Liang, Tong Chen, Pranam Chatterjee"
+  venue: "ICLR 2026 Workshops"
+  year: 2026
+  type: Workshop
+  paper: "https://openreview.net/forum?id=lmIrzCzayf"
+- title: "Multi-Objective-Guided Discrete Flow Matching for Controllable Biological Sequence Design"
+  authors: "Tong Chen, Yinuo Zhang, Sophia Vincoff, Sophia Tang, Pranam Chatterjee"
+  venue: "ICML 2025 Workshops (GenBio Spotlight)"
+  year: 2025
+  type: Workshop
+  paper: "https://openreview.net/forum?id=8YIMLoHP9J"
+- title: "PTM-Mamba: a PTM-aware protein language model with bidirectional gated Mamba blocks"
+  authors: "Zhangzhi Peng, Chentong Wang, Tong Chen, Benjamin Schussheim, Sophia Vincoff, Pranam Chatterjee"
+  venue: "Nature Methods, 2025"
+  year: 2025
+  type: Journal
+  paper: "https://www.nature.com/articles/s41592-025-02656-9"
+- title: "Synergizing Sequence and Structure Representations to Predict Protein Variants"
+  authors: "Tong Chen, Pranam Chatterjee"
+  venue: "Cell Research, Research Highlights"
+  year: 2024
+  type: Research Highlight
+  paper: "https://www.nature.com/articles/s41422-024-01010-6"

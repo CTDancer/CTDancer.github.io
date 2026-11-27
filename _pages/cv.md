@@ -7,24 +7,52 @@ redirect_from:
   - /resume
 ---
 
-{% include base_path %}
-
-Please kindly find my full resume [here](/files/CV_Tong_Chen.pdf).
+<div class="cv-print"><button type="button" id="print-cv">Print / Save as PDF</button></div>
+<script defer src="{{ '/assets/js/notes.js' | relative_url }}"></script>
 
 ## Education
-* Sep 2021 - Present: B.S. Student of Computer Science and Technology, Fudan University
+
+- **University of Pennsylvania**, Ph.D. in Computer and Information Science — September 2025–present.
+- **Fudan University**, B.S. in Computer Science — September 2021–June 2025.
+
+## Research interests
+
+Generative modeling; multi-objective optimization; AI for biomolecular design.
 
 ## Research experience
-* Summer 2024: Motif-specific Binder Design
 
-* Spring 2024: Homo-UOX Variants Design
+**Chatterjee Lab, University of Pennsylvania** — Ph.D. student, advised by Prof. Pranam Chatterjee (September 2025–present).
 
-* Winter 2023: Streamlined spCas9 Design
+- pCoMole: Pareto-constrained variable-length biomolecular editing with discrete flows.
+- PIGEON: Pocket-inferred geometric ensemble flexible protein–ligand docking.
+- PeptiVerse: Peptide property prediction, including half-life and permeability.
+- AReUReDi: Multi-objective sampling with rectified discrete flows.
+- LaPep: Language-guided versus predictor-constrained peptide design.
 
-* Fall 2023: TadA Protein Activity Prediction Model Development
+**Chatterjee Lab, Duke University** — Research intern, advised by Prof. Pranam Chatterjee (June 2024–August 2025).
 
-* Summer 2023: Demonstration Distillation for Effecient In-Context Learning
+- moPPIt: Motif-specific peptide binder design and binding-site prediction.
+- MOG-DFM: Multi-objective-guided discrete flow matching.
+- PTM-Mamba: Evaluation of PTM-aware protein language model representations.
 
-* Spring 2023: Medical Image Dataset Distillation
+**Qing Yuan Research Institute** — Research intern, advised by Prof. Dequan Wang and Prof. Zhijie Deng (November 2022–June 2024).
 
-  
+- Computational protein design, efficient in-context learning, and medical image dataset distillation.
+
+## Publications
+
+See the [Publications page](/publications/) for the current list of publications and workshop papers.
+
+## Selected awards
+
+- Spotlight, ICML 2025 GenBio Workshop (MOG-DFM), 2025.
+- Honorable Mention Prize, Interdisciplinary Contest in Modeling, 2023.
+- Second Prize, Academic Excellence Scholarship, Fudan University, 2022–2023.
+
+## Technical skills
+
+- **Programming:** Python, C/C++, Java, R, SQL, Bash, Linux, Git, LaTeX.
+- **Machine learning:** PyTorch, PyTorch Lightning, Hugging Face, ESM-2, XGBoost, Optuna, Weights & Biases, Docker.
+- **Web and deployment:** Gradio, Django, Vue, HTML, JavaScript, TypeScript.
+
+*Updated November 2026.*

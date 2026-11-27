@@ -1,0 +1,33 @@
+name: Check Jekyll site
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - name: Build site
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build
+      - name: Check generated pages and search index
+        run: |
+          ruby -rjson -e '
+            paths = %w[index.html publications/index.html cv/index.html notes/index.html notes/physics/electron-density-and-electric-fields/index.html notes/search.json]
+            paths.each { |p| abort("Missing output: #{p}") unless File.file?(File.join("_site",p)) }
+            notes = JSON.parse(File.read("_site/notes/search.json"))
+            abort("Missing full-text index") unless notes.any? { |n| n["title"] == "Electron Density and Electric Fields" && n["content"].include?("susceptibility") }
+            notes.each { |n| abort("Broken note URL: #{n["url"]}") unless File.file?(File.join("_site", n["url"].sub(%r{^/}, ""), "index.html")) }
+          '
+          node --check assets/js/notes.js
+          node --check assets/js/mathjax-config.js
