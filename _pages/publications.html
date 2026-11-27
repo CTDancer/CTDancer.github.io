@@ -4,9 +4,9 @@ title: "Publications"
 permalink: /publications/
 author_profile: true
 ---
-<div class="publication-list">
-<p>Selected publications and workshop papers. For the latest bibliographic records, see my <a href="{{ site.author.googlescholar }}">Google Scholar profile</a>. * denotes equal contribution.</p>
-{% assign years = site.data.publication_list | group_by: "year" %}
+<div class="publication-list" data-publication-count="{{ site.data.publication_list.size }}">
+<p>{{ site.data.publication_list.size }} selected publications and workshop papers. For the latest bibliographic records, see my <a href="{{ site.author.googlescholar }}">Google Scholar profile</a>. * denotes equal contribution.</p>
+{% assign years = site.data.publication_list | group_by: "year" | sort: "name" | reverse %}
 {% for year in years %}
 <h2>{{ year.name }}</h2>
 {% for p in year.items %}
@@ -15,7 +15,7 @@ author_profile: true
 <h3>{{ p.title | escape }}</h3>
 <p>{{ p.authors | escape | replace: "Tong Chen", "<strong>Tong Chen</strong>" }}</p>
 <p class="publication-venue">{{ p.venue | escape }}</p>
-{% if p.paper %}<a href="{{ p.paper }}">Paper</a>{% else %}<a href="https://scholar.google.com/scholar?q={{ p.title | url_encode }}">Find paper on Google Scholar</a>{% endif %}
+{% if p.paper %}<a href="{{ p.paper | escape }}">Paper</a>{% else %}<a href="https://scholar.google.com/scholar?q={{ p.title | url_encode }}">Find paper on Google Scholar</a>{% endif %}
 </article>
 {% endfor %}
 {% endfor %}

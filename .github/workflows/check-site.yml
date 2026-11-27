@@ -2,6 +2,8 @@ name: Check Jekyll site
 on:
   pull_request:
     branches: [master]
+  push:
+    branches: [master]
   workflow_dispatch:
 
 permissions:
@@ -20,11 +22,20 @@ jobs:
         env:
           JEKYLL_ENV: production
         run: bundle exec jekyll build
-      - name: Check generated pages and search index
+      - name: Check generated pages, publications and search index
         run: |
           ruby -rjson -e '
             paths = %w[index.html publications/index.html cv/index.html notes/index.html notes/physics/electron-density-and-electric-fields/index.html notes/search.json]
             paths.each { |p| abort("Missing output: #{p}") unless File.file?(File.join("_site",p)) }
+            publications = File.read("_site/publications/index.html")
+            abort("Missing nine publication entries") unless publications.scan(/class="publication-entry"/).size == 9
+            %w[pCoMole PeptiVerse PIGEON moPPIt AReUReDi LaPep PTM-Mamba].each { |name| abort("Missing publication: #{name}") unless publications.include?(name) }
+            abort("Missing MOG-DFM") unless publications.include?("Multi-Objective-Guided Discrete Flow Matching")
+            abort("Missing research highlight") unless publications.include?("Synergizing Sequence and Structure Representations")
+            abort("Missing direct paper links") unless publications.scan(/>Paper<\/a>/).size == 9
+            homepage = File.read("_site/index.html")
+            abort("Missing updated advisor links") unless homepage.include?("https://dequan.wang/") && homepage.include?("https://sjtu-deng-lab.github.io/")
+            abort("Outdated homepage news") if homepage.include?("Started my Ph.D.") || homepage.include?("Graduated from Fudan University") || homepage.include?("listed in the ICLR")
             notes = JSON.parse(File.read("_site/notes/search.json"))
             abort("Missing full-text index") unless notes.any? { |n| n["title"] == "Electron Density and Electric Fields" && n["content"].include?("susceptibility") }
             notes.each { |n| abort("Broken note URL: #{n["url"]}") unless File.file?(File.join("_site", n["url"].sub(%r{^/}, ""), "index.html")) }

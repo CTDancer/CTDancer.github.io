@@ -7,6 +7,11 @@ redirect_from:
   - /resume
 ---
 
+{% assign latest_resume = site.static_files | where: "path", "/files/Tong_Chen_Resume.pdf" | first %}
+{% if latest_resume %}
+<script>window.location.replace({{ latest_resume.path | relative_url | jsonify }});</script>
+<p><a href="{{ latest_resume.path | relative_url }}">Open resume (PDF)</a></p>
+{% else %}
 <div class="cv-print"><button type="button" id="print-cv">Print / Save as PDF</button></div>
 <script defer src="{{ '/assets/js/notes.js' | relative_url }}"></script>
 
@@ -56,3 +61,5 @@ See the [Publications page](/publications/) for the current list of publications
 - **Web and deployment:** Gradio, Django, Vue, HTML, JavaScript, TypeScript.
 
 *Updated November 2026.*
+
+{% endif %}
