@@ -33,13 +33,18 @@ jobs:
             abort("Missing MOG-DFM") unless publications.include?("Multi-Objective-Guided Discrete Flow Matching")
             abort("Missing research highlight") unless publications.include?("Synergizing Sequence and Structure Representations")
             abort("Missing direct paper links") unless publications.scan(/>Paper<\/a>/).size == 9
-            figure_paths = %w[pcomole-method.svg peptiverse-method.svg pigeon.webp moppit-method.svg lapep-method.svg mog-dfm.webp ptm-mamba-method.svg promep.webp]
+            figure_paths = %w[pcomole-method.svg peptiverse-method.svg pigeon.webp moppit-method.svg areuredi-method.png lapep-method.svg mog-dfm.webp ptm-mamba-method.svg promep.webp]
             abort("Missing method figure thumbnails") unless publications.scan(/class="publication-entry__figure"/).size == figure_paths.size
             figure_paths.each do |name|
               image = "images/publications/#{name}"
               path = File.join("_site",image)
               abort("Missing publication method figure: #{image}") unless File.file?(path)
-              valid = name.end_with?(".svg") ? File.read(path).start_with?("<svg") : File.binread(path,12)[8,4] == "WEBP"
+              valid = case File.extname(name)
+              when ".svg" then File.read(path).start_with?("<svg")
+              when ".png" then File.binread(path,8) == "\x89PNG\r\n\x1a\n".b
+              when ".webp" then File.binread(path,12)[8,4] == "WEBP"
+              else false
+              end
               abort("Invalid publication method figure: #{image}") unless valid
               abort("Missing rendered method figure link: #{image}") unless publications.include?(image)
             end

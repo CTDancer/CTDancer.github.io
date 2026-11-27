@@ -36,6 +36,8 @@
   year: 2026
   type: Workshop
   paper: "https://openreview.net/forum?id=iCIGJ1UKoB"
+  image: "/images/publications/areuredi-method.png"
+  image_alt: "AReUReDi rectification and annealed multi-objective guidance workflow"
 - title: "LaPep: Can Language Contribute to Property-Guided Peptide Design?"
   authors: "Kimberly Liang, Tong Chen, Pranam Chatterjee"
   venue: "ICLR 2026 Workshops"
