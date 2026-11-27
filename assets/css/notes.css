@@ -49,47 +49,39 @@
 @media (max-width: 38em) { .notes-topics { grid-template-columns: 1fr; } .notes-shell { padding: 1.3rem 1rem 3rem; } }
 @media print { .cv-print, .notes-search, .notes-topics, .note-toc, .note-footer { display: none !important; } .notes-shell { padding: 0; } .note-content { max-width: none; } }
 
-/* Publication figures: keep the original figure proportions and align thumbnails on the right. */
+/* Publications: wide, caption-free method figures, preserving the original aspect ratio. */
 .publication-list .publication-entry {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(12rem, 29%);
-  gap: 1.35rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 44%);
+  gap: 1.5rem;
   align-items: center;
-  padding: .65rem 0 1.4rem;
+  padding: .65rem 0 1.5rem;
 }
 .publication-entry__content { min-width: 0; overflow-wrap: break-word; }
+.publication-entry__content:only-child { grid-column: 1 / -1; }
 .publication-entry__figure {
   display: block;
   width: 100%;
-  max-width: 19rem;
+  max-width: none;
+  min-width: 0;
   margin: 0;
   justify-self: end;
-  text-align: center;
 }
 .publication-entry__figure a { display: block; text-decoration: none; }
 .publication-entry__figure img {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 12rem;
+  max-height: none;
   object-fit: contain;
   background: #fff;
-  padding: .35rem;
-  border: 1px solid #e4eae6;
-  border-radius: .4rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
   box-sizing: border-box;
 }
-.publication-entry__figure a:hover img { border-color: #78a38b; }
-.publication-entry__figure figcaption {
-  display: block;
-  font-size: .67rem;
-  line-height: 1.4;
-  font-style: normal;
-  color: #52665d;
-  margin: .35rem 0 0;
-}
+.publication-entry__figure a:focus-visible { outline: 2px solid #306c53; outline-offset: 4px; }
 @media (max-width: 64em) {
-  .publication-list .publication-entry { grid-template-columns: minmax(0, 1fr); gap: .8rem; }
-  .publication-entry__figure { justify-self: start; max-width: 27rem; }
-  .publication-entry__figure img { max-height: 14rem; }
+  .publication-list .publication-entry { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .publication-entry__figure { justify-self: start; max-width: 36rem; }
 }

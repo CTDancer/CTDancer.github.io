@@ -33,13 +33,18 @@ jobs:
             abort("Missing MOG-DFM") unless publications.include?("Multi-Objective-Guided Discrete Flow Matching")
             abort("Missing research highlight") unless publications.include?("Synergizing Sequence and Structure Representations")
             abort("Missing direct paper links") unless publications.scan(/>Paper<\/a>/).size == 9
-            figure_paths = %w[pcomole peptiverse pigeon moppit areuredi lapep mog-dfm ptm-mamba promep]
-            abort("Missing nine figure thumbnails") unless publications.scan(/class="publication-entry__figure"/).size == figure_paths.size
+            figure_paths = %w[pcomole-method.svg peptiverse-method.svg pigeon.webp moppit-method.svg lapep-method.svg mog-dfm.webp ptm-mamba-method.svg promep.webp]
+            abort("Missing method figure thumbnails") unless publications.scan(/class="publication-entry__figure"/).size == figure_paths.size
             figure_paths.each do |name|
-              image = "images/publications/#{name}.webp"
-              abort("Missing or invalid publication figure: #{image}") unless File.file?(File.join("_site",image)) && File.binread(File.join("_site",image), 12)[8,4] == "WEBP"
-              abort("Missing rendered figure link: #{image}") unless publications.include?(image)
+              image = "images/publications/#{name}"
+              path = File.join("_site",image)
+              abort("Missing publication method figure: #{image}") unless File.file?(path)
+              valid = name.end_with?(".svg") ? File.read(path).start_with?("<svg") : File.binread(path,12)[8,4] == "WEBP"
+              abort("Invalid publication method figure: #{image}") unless valid
+              abort("Missing rendered method figure link: #{image}") unless publications.include?(image)
             end
+            abort("Unexpected results figure") if publications.include?("images/publications/areuredi.webp")
+            abort("Unexpected publication intro or figure caption") if publications.include?("selected publications and workshop papers") || publications.include?("<figcaption")
             homepage = File.read("_site/index.html")
             abort("Missing updated advisor links") unless homepage.include?("https://dequan.wang/") && homepage.include?("https://sjtu-deng-lab.github.io/")
             abort("Outdated homepage news") if homepage.include?("Started my Ph.D.") || homepage.include?("Graduated from Fudan University") || homepage.include?("listed in the ICLR")

@@ -5,7 +5,6 @@ permalink: /publications/
 author_profile: true
 ---
 <div class="publication-list" data-publication-count="{{ site.data.publication_list.size }}">
-<p>{{ site.data.publication_list.size }} selected publications and workshop papers. For the latest bibliographic records, see my <a href="{{ site.author.googlescholar }}">Google Scholar profile</a>. * denotes equal contribution.</p>
 {% assign years = site.data.publication_list | group_by: "year" | sort: "name" | reverse %}
 {% for year in years %}
 <h2>{{ year.name }}</h2>
@@ -23,7 +22,6 @@ author_profile: true
 <a href="{{ p.image | relative_url }}" target="_blank" rel="noopener" aria-label="View full figure: {{ p.title | escape }}">
 <img src="{{ p.image | relative_url }}" alt="{{ p.image_alt | default: p.title | escape }}" loading="lazy" decoding="async">
 </a>
-{% if p.image_caption %}<figcaption>{{ p.image_caption | escape }}</figcaption>{% endif %}
 </figure>
 {% endif %}
 </article>
