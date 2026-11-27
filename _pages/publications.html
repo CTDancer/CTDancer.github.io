@@ -11,11 +11,21 @@ author_profile: true
 <h2>{{ year.name }}</h2>
 {% for p in year.items %}
 <article class="publication-entry">
+<div class="publication-entry__content">
 <span class="publication-type">{{ p.type | escape }}</span>
 <h3>{{ p.title | escape }}</h3>
 <p>{{ p.authors | escape | replace: "Tong Chen", "<strong>Tong Chen</strong>" }}</p>
 <p class="publication-venue">{{ p.venue | escape }}</p>
 {% if p.paper %}<a href="{{ p.paper | escape }}">Paper</a>{% else %}<a href="https://scholar.google.com/scholar?q={{ p.title | url_encode }}">Find paper on Google Scholar</a>{% endif %}
+</div>
+{% if p.image %}
+<figure class="publication-entry__figure">
+<a href="{{ p.image | relative_url }}" target="_blank" rel="noopener" aria-label="View full figure: {{ p.title | escape }}">
+<img src="{{ p.image | relative_url }}" alt="{{ p.image_alt | default: p.title | escape }}" loading="lazy" decoding="async">
+</a>
+{% if p.image_caption %}<figcaption>{{ p.image_caption | escape }}</figcaption>{% endif %}
+</figure>
+{% endif %}
 </article>
 {% endfor %}
 {% endfor %}

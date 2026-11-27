@@ -33,6 +33,13 @@ jobs:
             abort("Missing MOG-DFM") unless publications.include?("Multi-Objective-Guided Discrete Flow Matching")
             abort("Missing research highlight") unless publications.include?("Synergizing Sequence and Structure Representations")
             abort("Missing direct paper links") unless publications.scan(/>Paper<\/a>/).size == 9
+            figure_paths = %w[pcomole peptiverse pigeon moppit areuredi lapep mog-dfm ptm-mamba promep]
+            abort("Missing nine figure thumbnails") unless publications.scan(/class="publication-entry__figure"/).size == figure_paths.size
+            figure_paths.each do |name|
+              image = "images/publications/#{name}.webp"
+              abort("Missing or invalid publication figure: #{image}") unless File.file?(File.join("_site",image)) && File.binread(File.join("_site",image), 12)[8,4] == "WEBP"
+              abort("Missing rendered figure link: #{image}") unless publications.include?(image)
+            end
             homepage = File.read("_site/index.html")
             abort("Missing updated advisor links") unless homepage.include?("https://dequan.wang/") && homepage.include?("https://sjtu-deng-lab.github.io/")
             abort("Outdated homepage news") if homepage.include?("Started my Ph.D.") || homepage.include?("Graduated from Fudan University") || homepage.include?("listed in the ICLR")

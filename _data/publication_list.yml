@@ -4,51 +4,78 @@
   year: 2026
   type: Conference
   paper: "https://arxiv.org/abs/2610.01663"
+  image: "/images/publications/pcomole.webp"
+  image_alt: "pCoMole framework and representative molecular designs"
+  image_caption: "Fig. 1 · Framework overview"
 - title: "PeptiVerse: A Unified Platform for Therapeutic Peptide Property Prediction"
   authors: "Yinuo Zhang, Sophia Tang, Tong Chen, Elizabeth Mahood, Sophia Vincoff, Pranam Chatterjee"
   venue: "Nature Communications, 17, 6819 (2026)"
   year: 2026
   type: Journal
   paper: "https://www.nature.com/articles/s41467-026-74167-w"
+  image: "/images/publications/peptiverse.webp"
+  image_alt: "PeptiVerse peptide property prediction platform workflow"
+  image_caption: "Fig. 1 · Platform overview"
 - title: "PIGEON: Pocket-Inferred Geometric Ensemble Flexible Docking"
   authors: "Tong Chen, Maximilian Holsman, Pranam Chatterjee"
   venue: "ICML 2026 GenBio Workshop (Generative and Agentic AI for Biology)"
   year: 2026
   type: Workshop
   paper: "https://openreview.net/forum?id=tEybDjVvsB"
+  image: "/images/publications/pigeon.webp"
+  image_alt: "PIGEON pocket-inferred flexible docking framework"
+  image_caption: "Fig. 1 · Docking workflow"
 - title: "moPPIt: De Novo Generation of Motif-Specific and Functionally Active Peptide Binders via Discrete Flow Matching"
   authors: "Tong Chen*, Zachary Quinn*, Kunal Mishra*, Erin C. O’Connor*, Sophia E. Silver, Yinuo Zhang, Mary Jo Valencia, Ying Mei, Jacques Behmoaras, Leonardo M.R. Ferreira, Pranam Chatterjee"
   venue: "ICLR 2026 Workshops"
   year: 2026
   type: Workshop
   paper: "https://www.biorxiv.org/content/10.1101/2024.07.31.606098v2"
+  image: "/images/publications/moppit.webp"
+  image_alt: "moPPIt motif-specific peptide design workflow"
+  image_caption: "Fig. 1c · Method overview"
 - title: "AReUReDi: Annealed Rectified Updates for Refining Discrete Flows with Multi-Objective Guidance"
   authors: "Tong Chen, Yinuo Zhang, Sophia Vincoff, Pranam Chatterjee"
   venue: "ICLR 2026 Workshops"
   year: 2026
   type: Workshop
   paper: "https://openreview.net/forum?id=iCIGJ1UKoB"
+  image: "/images/publications/areuredi.webp"
+  image_alt: "AReUReDi representative designed and reference binders"
+  image_caption: "Fig. 1a–d · Representative binder designs"
 - title: "LaPep: Can Language Contribute to Property-Guided Peptide Design?"
   authors: "Kimberly Liang, Tong Chen, Pranam Chatterjee"
   venue: "ICLR 2026 Workshops"
   year: 2026
   type: Workshop
   paper: "https://openreview.net/forum?id=lmIrzCzayf"
+  image: "/images/publications/lapep.webp"
+  image_alt: "LaPep language-guided peptide optimization workflow"
+  image_caption: "Fig. 1 · Framework overview"
 - title: "Multi-Objective-Guided Discrete Flow Matching for Controllable Biological Sequence Design"
   authors: "Tong Chen, Yinuo Zhang, Sophia Vincoff, Sophia Tang, Pranam Chatterjee"
   venue: "ICML 2025 Workshops (GenBio Spotlight)"
   year: 2025
   type: Workshop
   paper: "https://openreview.net/forum?id=8YIMLoHP9J"
+  image: "/images/publications/mog-dfm.webp"
+  image_alt: "MOG-DFM multi-objective-guided discrete flow matching workflow"
+  image_caption: "Fig. 1 · Method overview"
 - title: "PTM-Mamba: a PTM-aware protein language model with bidirectional gated Mamba blocks"
   authors: "Zhangzhi Peng, Chentong Wang, Tong Chen, Benjamin Schussheim, Sophia Vincoff, Pranam Chatterjee"
   venue: "Nature Methods, 2025"
   year: 2025
   type: Journal
   paper: "https://www.nature.com/articles/s41592-025-02656-9"
+  image: "/images/publications/ptm-mamba.webp"
+  image_alt: "PTM-Mamba model architecture"
+  image_caption: "Fig. 1a · Model architecture"
 - title: "Synergizing Sequence and Structure Representations to Predict Protein Variants"
   authors: "Tong Chen, Pranam Chatterjee"
   venue: "Cell Research, Research Highlights"
   year: 2024
   type: Research Highlight
   paper: "https://www.nature.com/articles/s41422-024-01010-6"
+  image: "/images/publications/promep.webp"
+  image_alt: "ProMEP protein variant fitness prediction workflow"
+  image_caption: "Fig. 1 · Prediction workflow"
