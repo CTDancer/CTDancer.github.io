@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<main class="notes-shell note-reader">
+<header class="note-header">
+<p class="notes-kicker"><a href="{{ '/notes/' | relative_url }}">Learning Notes</a> / <a href="{{ '/notes/' | relative_url }}#topic-{{ page.category | slugify }}">{{ page.category | escape }}</a></p>
+<h1>{{ page.title | escape }}</h1>
+{% if page.summary %}<p class="note-summary">{{ page.summary | escape }}</p>{% endif %}
+<p class="note-meta">{% if page.date %}{{ page.date | date: "%B %d, %Y" }}{% endif %}{% if page.updated %} · Updated {{ page.updated | date: "%B %d, %Y" }}{% endif %}{% for tag in page.tags %}<span>{{ tag | escape }}</span>{% endfor %}</p>
+</header>
+<div class="note-columns">
+<nav class="note-toc" aria-label="Table of contents" hidden><strong>On this page</strong><ol id="note-toc-list"></ol></nav>
+<article class="note-content" id="note-content">{{ content }}</article>
+</div>
+<footer class="note-footer"><a href="{{ '/notes/' | relative_url }}">← All learning notes</a></footer>
+</main>
+<script defer src="{{ '/assets/js/notes.js' | relative_url }}"></script>

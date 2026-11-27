@@ -1,0 +1,50 @@
+/* Scoped additions: the original AcademicPages theme remains intact. */
+.notes-shell { --note-green: #306c53; --note-muted: #52665d; --note-border: #dce8e0; max-width: 77rem; margin: 0 auto; padding: 2.5rem 1.3rem 4rem; line-height: 1.65; }
+.notes-shell [hidden] { display: none !important; }
+.notes-hero { border-bottom: 1px solid var(--note-border); padding-bottom: 1.3rem; margin-bottom: 1.5rem; }
+.notes-kicker { color: var(--note-green); font-weight: 600; font-size: .8rem; letter-spacing: .04em; margin: 0 0 .4rem; }
+.notes-shell h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.2; margin: 0 0 .8rem; }
+.notes-hero p:last-child, .note-summary { color: var(--note-muted); max-width: 48rem; font-size: 1.02rem; }
+.notes-shell a { color: var(--note-green); }
+.notes-shell a:focus-visible, .notes-shell input:focus-visible { outline: 3px solid #6a9f82; outline-offset: 3px; }
+.notes-search { margin: 0 0 1.5rem; }
+.notes-search label { display: block; font-size: .85rem; font-weight: 600; }
+.notes-search input { width: 100%; padding: .8rem 1rem; background: #fff; color: #243a30; border: 1px solid #bacfc1; border-radius: .55rem; font: inherit; }
+.notes-search p { color: var(--note-muted); font-size: .8rem; margin: .4rem 0 0; }
+.notes-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .8rem; margin: 1rem 0 2rem; }
+.notes-topic { display: flex; flex-direction: column; gap: .25rem; padding: 1rem; border: 1px solid var(--note-border); border-radius: .65rem; background: #f7faf8; text-decoration: none; }
+.notes-topic:hover { border-color: #78a38b; text-decoration: none; }
+.notes-topic span, .notes-topic small { color: var(--note-muted); font-size: .8rem; }
+.notes-topic small { margin-top: .4rem; }
+.notes-group { margin: 2rem 0; scroll-margin-top: 5rem; }
+.notes-group h2 { font-size: 1.35rem; border-bottom: 1px solid var(--note-border); padding-bottom: .4rem; }
+.note-card { padding: .9rem 0; border-bottom: 1px solid var(--note-border); }
+.note-card h3 { font-size: 1.08rem; margin: 0 0 .25rem; }
+.note-card p { margin: .3rem 0; font-size: .9rem; }
+.notes-empty, .note-meta { color: var(--note-muted); font-size: .78rem; }
+.note-meta span { display: inline-block; margin: .15rem .25rem; padding: .08rem .42rem; border-radius: .25rem; background: #edf4ef; color: #365846; }
+.note-header { border-bottom: 1px solid var(--note-border); margin-bottom: 1.5rem; padding-bottom: 1rem; }
+.note-columns { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+.note-toc { border-left: 2px solid var(--note-border); padding-left: 1rem; font-size: .83rem; }
+.note-toc ol { padding-left: 1.2rem; margin-top: .45rem; }
+.note-toc li { margin: .3rem 0; }
+.note-toc-sub { margin-left: .8rem !important; font-size: .93em; }
+.note-content { min-width: 0; max-width: 49rem; font-size: 1rem; line-height: 1.85; overflow-wrap: break-word; }
+.note-content h2, .note-content h3 { scroll-margin-top: 5rem; line-height: 1.35; margin-top: 1.8em; }
+.note-content h2 { border-bottom: 1px solid var(--note-border); padding-bottom: .35rem; }
+.note-content pre, .note-content table, .note-content mjx-container[display="true"] { max-width: 100%; overflow-x: auto; }
+.note-content table { display: block; width: max-content; }
+.note-content img { max-width: 100%; height: auto; }
+.note-footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--note-border); }
+.publication-entry { margin: 1.25rem 0; padding: 0 0 1.25rem; border-bottom: 1px solid #dce8e0; }
+.publication-entry h3 { margin: .3rem 0; line-height: 1.4; }
+.publication-entry p { margin: .3rem 0; }
+.publication-type { font-size: .72rem; color: #306c53; }
+.publication-venue { color: #306c53; font-style: italic; }
+.cv-print button { border: 1px solid #bacfc1; border-radius: .4rem; padding: .45rem .8rem; background: #f7faf8; color: #306c53; cursor: pointer; }
+@media (min-width: 64em) {
+  .note-columns:has(.note-toc:not([hidden])) { grid-template-columns: 14rem minmax(0, 1fr); }
+  .note-toc { position: sticky; top: 5rem; align-self: start; max-height: 75vh; overflow-y: auto; }
+}
+@media (max-width: 38em) { .notes-topics { grid-template-columns: 1fr; } .notes-shell { padding: 1.3rem 1rem 3rem; } }
+@media print { .cv-print, .notes-search, .notes-topics, .note-toc, .note-footer { display: none !important; } .notes-shell { padding: 0; } .note-content { max-width: none; } }
