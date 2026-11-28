@@ -25,7 +25,7 @@ jobs:
       - name: Check generated pages, publications and search index
         run: |
           ruby -rjson -e '
-            paths = %w[index.html publications/index.html cv/index.html notes/index.html notes/physics/electron-density-and-electric-fields/index.html notes/search.json]
+            paths = %w[index.html publications/index.html cv/index.html notes/index.html notes/physics/quantum-mechanics-of-molecules/index.html notes/search.json]
             paths.each { |p| abort("Missing output: #{p}") unless File.file?(File.join("_site",p)) }
             publications = File.read("_site/publications/index.html")
             abort("Missing nine publication entries") unless publications.scan(/class="publication-entry"/).size == 9
@@ -54,7 +54,16 @@ jobs:
             abort("Missing updated advisor links") unless homepage.include?("https://dequan.wang/") && homepage.include?("https://sjtu-deng-lab.github.io/")
             abort("Outdated homepage news") if homepage.include?("Started my Ph.D.") || homepage.include?("Graduated from Fudan University") || homepage.include?("listed in the ICLR")
             notes = JSON.parse(File.read("_site/notes/search.json"))
-            abort("Missing full-text index") unless notes.any? { |n| n["title"] == "Electron Density and Electric Fields" && n["content"].include?("susceptibility") }
+            new_note = notes.find { |n| n["title"] == "What Is a Molecule, Quantum Mechanically?" }
+            abort("Missing new note or full-text index") unless new_note && new_note["content"].include?("one-particle reduced density matrix") && new_note["content"].include?("Hohenberg")
+            abort("Old note still indexed") if notes.any? { |n| n["title"] == "Electron Density and Electric Fields" }
+            note_html = File.read("_site/notes/physics/quantum-mechanics-of-molecules/index.html")
+            article = note_html[/<article class="note-content"[^>]*>(.*?)<\/article>/m, 1]
+            abort("Missing note article") unless article
+            abort("Missing sections or references") unless article.scan(/<h2\b/).size == 10 && article.include?("Hohenberg")
+            inline_count = article.scan(/\\\(/).size + article.scan(/<script[^>]+type="math\/tex"/).size
+            display_count = article.scan(/\\\[/).size + article.scan(/<script[^>]+type="math\/tex;[^"]*mode=display"/).size
+            abort("Incomplete math conversion: #{inline_count} inline, #{display_count} display") unless inline_count >= 156 && display_count >= 45
             notes.each { |n| abort("Broken note URL: #{n["url"]}") unless File.file?(File.join("_site", n["url"].sub(%r{^/}, ""), "index.html")) }
           '
           node --check assets/js/notes.js
