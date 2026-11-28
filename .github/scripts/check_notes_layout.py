@@ -41,7 +41,7 @@ with sync_playwright() as p:
 
     load(page, "notes/index.html")
     cards = page.locator(".notes-topics > .notes-topic")
-    assert cards.all_inner_texts() == ["Mathematics", "Physics", "Chemistry, Biology & Biochemistry", "Artificial Intelligence"]
+    assert cards.all_inner_texts() == ["Mathematics", "Physics", "Biology & Chemistry", "Artificial Intelligence"]
     assert cards.locator("span,small").count() == 0
     assert page.locator(".notes-group").count() == 4
     assert page.locator(".notes-topics").evaluate("(e)=>getComputedStyle(e).gridTemplateColumns.split(' ').length") == 4
@@ -56,6 +56,8 @@ with sync_playwright() as p:
     article_box = page.locator(".note-content").bounding_box()
     root_px = page.locator("html").evaluate("(e)=>parseFloat(getComputedStyle(e).fontSize)")
     assert article_box["width"] > 49 * root_px, article_box
+    assert abs(page.locator(".note-content").evaluate("(e)=>parseFloat(getComputedStyle(e).fontSize)") - 1.12 * root_px) < .1
+    assert abs(page.locator(".note-toc").evaluate("(e)=>parseFloat(getComputedStyle(e).fontSize)") - .90 * root_px) < .1
     assert page.locator(".note-content").evaluate("(e)=>getComputedStyle(e).maxWidth") == f"{68 * root_px:g}px"
     page.set_viewport_size({"width": 390, "height": 844})
     assert page.locator(".note-columns").evaluate("(e)=>getComputedStyle(e).gridTemplateColumns.split(' ').length") == 1

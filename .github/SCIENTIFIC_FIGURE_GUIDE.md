@@ -95,3 +95,12 @@ Do not use a TeX renderer as a substitute for scientific and layout review:
 check units, assumptions, overlaps, font sizes and meaningful motion for each
 new figure. Browser static fallbacks do not need the CDN; live math generation
 does, unless the MathJax bundle is served locally.
+
+
+## 5. Equation emphasis
+
+Follow the blog-wide editorial rule: emphasize key mathematical labels by
+semantic color, not by a box or background. In a figure use draw.math with its
+color option (for example SF.palette.green for a derived quantity). Do not
+wrap formulas in \boxed for decorative emphasis. Preserve the meaning of
+scientifically necessary geometric or structural boundaries.

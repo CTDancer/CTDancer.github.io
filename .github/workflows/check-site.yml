@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
@@ -99,6 +99,7 @@ jobs:
               assert (root / img.lstrip("/")).is_file(), img
           print("All eight article figures, four interactive controls and static image links verified.")
           PY
+          python3 .github/scripts/test_note_style.py
           node --check assets/js/notes.js
           node --check assets/js/mathjax-config.js
       - name: Verify math and interactive scientific figures in Chromium

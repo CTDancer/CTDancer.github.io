@@ -1,7 +1,8 @@
 - name: Mathematics
 - name: Physics
-- name: "Chemistry, Biology & Biochemistry"
+- name: "Biology & Chemistry"
   aliases:
+    - "Chemistry, Biology & Biochemistry"
     - Chemistry
     - "Biology & Biochemistry"
     - Biology

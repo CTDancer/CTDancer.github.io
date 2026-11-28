@@ -13,6 +13,28 @@ TOKEN = re.compile(
     r"|(?<![\\$])\$(?P<inline>[^$\n]+)\$(?!\$)"
 )
 
+# Editorial policy: color important equations, never frame them. Recognize actual
+# TeX control sequences (including escaped backslashes), not arbitrary substrings.
+# Keeping the argument braces preserves grouping, nested braces and aligned math.
+EMPHASIS = re.compile(
+    r"\\(?:(?P<boxed>boxed)(?=\s*\{)"
+    r"|(?P<green>textcolor\s*\{\s*\#306[cC]53\s*\})(?=\s*\{)"
+    r"|[A-Za-z]+|[^\n])"
+)
+
+def normalize_emphasis(tex):
+    emphasized = False
+
+    def replace(m):
+        nonlocal emphasized
+        if m.group("boxed") or m.group("green"):
+            emphasized = True
+            return ""
+        return m.group(0)
+
+    return EMPHASIS.sub(replace, tex), emphasized
+
+
 def encoded(tex):
     # Encode punctuation before Markdown or Liquid can interpret it.
     return "".join(c if c.isascii() and (c.isalnum() or c == " ")
@@ -31,11 +53,13 @@ def prepare(source):
             return m.group(0)
         is_display = display is not None
         tex = display if is_display else inline
-        equations.append((is_display, tex))
+        tex, emphasized = normalize_emphasis(tex)
+        equations.append((is_display, tex, emphasized))
         tag = "div" if is_display else "span"
         kind = "display" if is_display else "inline"
         value = encoded(tex)
-        return f'<{tag} class="note-math-{kind}" data-tex="{value}">{value}</{tag}>'
+        emphasis_class = " note-math-emphasis" if emphasized else ""
+        return f'<{tag} class="note-math-{kind}{emphasis_class}" data-tex="{value}">{value}</{tag}>'
 
     return header + TOKEN.sub(replace, body), equations
 
@@ -57,7 +81,7 @@ class ArticleCheck(HTMLParser):
         if not self.active:
             return
         if "note-math-inline" in classes or "note-math-display" in classes:
-            self.math.append(("note-math-display" in classes, a.get("data-tex")))
+            self.math.append(("note-math-display" in classes, a.get("data-tex"), "note-math-emphasis" in classes))
         if tag == "table":
             self.tables += 1
             self.in_table = True
@@ -98,7 +122,7 @@ def main():
             assert check.table_rows == args.rows, f"Unexpected table rows: {check.table_rows}"
         if args.headings is not None:
             assert check.headings == args.headings, f"Unexpected headings: {check.headings}"
-    print(f"Verified {sum(not d for d, _ in equations)} inline and {sum(d for d, _ in equations)} display equations")
+    print(f"Verified {sum(not d for d, _, _ in equations)} inline and {sum(d for d, _, _ in equations)} display equations; {sum(em for _, _, em in equations)} color-emphasized equations")
 
 if __name__ == "__main__":
     main()

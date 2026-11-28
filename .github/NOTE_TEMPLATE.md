@@ -18,6 +18,15 @@ $$
 \mathbf E=-\nabla\phi.
 $$
 
+Emphasize important formulas with color only, e.g.:
+
+$
+\textcolor{#306c53}{\mathbf E=-\nabla\phi.}
+$
+
+Do not use \boxed for emphasis. The publishing preprocessor automatically
+converts boxed mathematics in supplied articles to this color-only style.
+
 ## Derivation
 
 Show intermediate steps. Distinguish exact identities, approximations, and hypotheses.

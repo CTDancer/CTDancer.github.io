@@ -136,7 +136,7 @@ $$
 where $i^2=-1$, $\hbar$ is the reduced Planck constant, and $t$ is time. For a time-independent Hamiltonian, its stationary states satisfy
 
 $$
-\boxed{\hat H|\Psi_m\rangle=E_m|\Psi_m\rangle.}\tag{1}
+\textcolor{#306c53}{\hat H|\Psi_m\rangle=E_m|\Psi_m\rangle.}\tag{1}
 $$
 
 This is the time-independent Schrödinger equation. The eigenvalues $E_m$ are the allowed energies, and the eigenstates $|\Psi_m\rangle$ describe the corresponding quantum states. The ground state has the lowest energy; states of higher energy are excited states. A stationary eigenstate evolves only by an overall phase $e^{-iE_mt/\hbar}$, leaving its position probability density unchanged.
@@ -150,7 +150,7 @@ Consider a nonrelativistic molecule with $N$ electrons and $M$ nuclei. Let $\mat
 In the absence of an external field, the Coulomb Hamiltonian is
 
 $$
-\boxed{\begin{aligned}
+\textcolor{#306c53}{\begin{aligned}
 \hat H={}&-\frac12\sum_{i=1}^{N}\nabla_i^2
 -\sum_{A=1}^{M}\frac{1}{2\mathcal M_A}\nabla_A^2\\
 &-\sum_{i,A}\frac{Z_A}{|\mathbf r_i-\mathbf R_A|}
@@ -335,7 +335,7 @@ A many-electron wavefunction describes the joint quantum state of all electrons.
 Because all electrons are indistinguishable, their one-electron marginal distributions are equivalent. Integrating out the remaining $N-1$ coordinates and summing the spin of the first electron gives
 
 $$
-\boxed{n(\mathbf r)=N\sum_s\int
+\textcolor{#306c53}{n(\mathbf r)=N\sum_s\int
 |\Psi((\mathbf r,s),x_2,\ldots,x_N)|^2\,dx_2\cdots dx_N.}\tag{4}
 $$
 
@@ -366,7 +366,7 @@ $$
 Here $\mathbf r$ is an external observation coordinate, while the $\mathbf r_i$ are variables of the many-electron wavefunction. Taking the expectation value recovers Eq. (4):
 
 $$
-\boxed{n(\mathbf r)=\langle\Psi|\hat n(\mathbf r)|\Psi\rangle.}\tag{5}
+\textcolor{#306c53}{n(\mathbf r)=\langle\Psi|\hat n(\mathbf r)|\Psi\rangle.}\tag{5}
 $$
 
 More rigorously, integrating $\hat n(\mathbf r)$ over a region yields an operator that counts the electrons in that region. The local density is its continuous distributional form.
@@ -396,7 +396,7 @@ For an $N$-electron state, the kernel of $\hat\rho$ involves two full configurat
 The resulting one-particle reduced density operator is defined, using the electron-number normalization convention, as $\hat\gamma=N\operatorname{Tr}_{2,\ldots,N}(\hat\rho)$. In position and spin coordinates its kernel is
 
 $$
-\boxed{\gamma(x,x')=N\int
+\textcolor{#306c53}{\gamma(x,x')=N\int
 \Psi(x,x_2,\ldots,x_N)
 \Psi^*(x',x_2,\ldots,x_N)
 \,dx_2\cdots dx_N.}\tag{6}
@@ -407,7 +407,7 @@ This operation is called a *partial trace*. Notice what is integrated out: the s
 Setting the two arguments equal gives the diagonal part of the 1-RDM. Summing over spin recovers the electron density:
 
 $$
-\boxed{n(\mathbf r)=\sum_s\gamma((\mathbf r,s),(\mathbf r,s)).}\tag{7}
+\textcolor{#306c53}{n(\mathbf r)=\sum_s\gamma((\mathbf r,s),(\mathbf r,s)).}\tag{7}
 $$
 
 The ordinary density is therefore the spin-summed position-space diagonal of the 1-RDM. Its off-diagonal kernel retains information about spatial coherence that is not visible in that diagonal alone.
@@ -462,7 +462,7 @@ For a single Slater determinant, the occupied spin orbitals have occupation one 
 The importance of the 1-RDM goes beyond visualization. Consider an observable that is a sum of identical one-electron operators, $\hat A=\sum_i\hat a(i)$, where $\hat a(i)$ acts on electron $i$. Permutation symmetry makes each term's expectation equal, and tracing over the other electrons gives
 
 $$
-\boxed{\langle\hat A\rangle=\operatorname{Tr}(\hat\gamma\hat a).}\tag{8}
+\textcolor{#306c53}{\langle\hat A\rangle=\operatorname{Tr}(\hat\gamma\hat a).}\tag{8}
 $$
 
 This relation holds for local and nonlocal one-electron operators alike. In particular, the electron kinetic energy depends on derivatives of the 1-RDM near its diagonal:
@@ -515,7 +515,7 @@ $$
 The factor $1/2$ converts the ordered-pair count into the unordered pairs in Eq. (2). In the nonrelativistic Coulomb model, at fixed nuclear geometry, this gives a useful exact decomposition of the potential energy:
 
 $$
-\boxed{U(\mathbf R)=T_e[\gamma]+V_{en}[n;\mathbf R]+V_{ee}[n_2]+V_{nn}(\mathbf R).}\tag{9}
+\textcolor{#306c53}{U(\mathbf R)=T_e[\gamma]+V_{en}[n;\mathbf R]+V_{ee}[n_2]+V_{nn}(\mathbf R).}\tag{9}
 $$
 
 This equation exposes the structure of the problem. The electronic kinetic energy is accessible from the 1-RDM, the electron–nucleus energy from the electron density, the electron–electron energy from the pair density, and the nuclear repulsion from the nuclear coordinates. We have not introduced a separate energy term for a chemical bond. Instead, bonding must emerge from the balance of these contributions.

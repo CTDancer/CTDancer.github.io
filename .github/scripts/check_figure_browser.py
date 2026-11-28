@@ -28,6 +28,13 @@ with sync_playwright() as p:
     page.wait_for_function('document.querySelectorAll(".qm-controls:not([hidden])").length === 4', timeout=30000)
     assert page.locator("#note-content .note-math-inline mjx-container").count() == 156
     assert page.locator("#note-content .note-math-display mjx-container").count() == 45
+    emphasized = page.locator("#note-content .note-math-emphasis")
+    assert emphasized.count() == 8
+    assert emphasized.locator("mjx-container").count() == 8
+    for label in emphasized.all():
+        assert label.locator("mjx-container svg").evaluate("(e)=>getComputedStyle(e).color") == "rgb(48, 108, 83)"
+        assert "\\boxed" not in label.get_attribute("data-tex")
+        assert label.locator('[data-mml-node="menclose"]').count() == 0
     for key, val in [("born-oppenheimer", 3.5), ("orbital-interference", 180), ("density-marginalization", 1.4), ("density-matrix-coherence", 180)]:
         fig = page.locator(f'figure[data-qm-kind="{key}"]')
         slider = fig.locator("input")
