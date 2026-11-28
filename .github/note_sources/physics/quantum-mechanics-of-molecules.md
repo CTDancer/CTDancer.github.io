@@ -9,8 +9,6 @@ redirect_from:
   - /notes/physics/electron-density-and-electric-fields/
 ---
 
-*Quantum Mechanics for Chemical Reactions and Enzyme Design · Part I*
-
 A molecule is often represented as a graph: atoms are nodes, and chemical bonds are edges. This representation is extraordinarily useful, but it hides a fundamental question. What, physically, makes two atoms bonded? There is no explicit bond variable in the fundamental molecular Hamiltonian. There are electrons, atomic nuclei, and interactions between them. Bonds emerge from their quantum-mechanical behavior.
 
 To understand how a chemical reaction occurs, or how an enzyme changes its course, we therefore need a representation that goes beyond molecular connectivity. We need to describe electronic states, identify the physical laws that govern them, and understand how measurable molecular properties arise from those states.
