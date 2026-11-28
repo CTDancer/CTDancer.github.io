@@ -61,10 +61,8 @@ jobs:
             article = note_html[/<article class="note-content"[^>]*>(.*?)<\/article>/m, 1]
             abort("Missing note article") unless article
             abort("Missing sections or references") unless article.scan(/<h2\b/).size == 10 && article.include?("Hohenberg")
-            inline_count = article.scan(/\\\(/).size + article.scan(/<script[^>]+type="math\/tex"/).size
-            display_count = article.scan(/\\\[/).size + article.scan(/<script[^>]+type="math\/tex;[^"]*mode=display"/).size
-            abort("Incomplete math conversion: #{inline_count} inline, #{display_count} display") unless inline_count >= 156 && display_count >= 45
             notes.each { |n| abort("Broken note URL: #{n["url"]}") unless File.file?(File.join("_site", n["url"].sub(%r{^/}, ""), "index.html")) }
           '
+          python3 .github/scripts/prepare_note.py .github/note_sources/physics/quantum-mechanics-of-molecules.md _notes/physics/quantum-mechanics-of-molecules.md --check --rendered _site/notes/physics/quantum-mechanics-of-molecules/index.html --tables 1 --rows 7 --headings 10
           node --check assets/js/notes.js
           node --check assets/js/mathjax-config.js

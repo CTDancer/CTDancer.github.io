@@ -12,7 +12,7 @@ Explain the question and why it matters.
 
 ## Foundations
 
-Define symbols and assumptions. Use Kramdown math: inline $$E=mc^2$$ or a separate display block:
+Define symbols and assumptions. Use standard Markdown math: inline $E=mc^2$, or a separate display block. The prepare_note.py publishing step protects the TeX before Jekyll parses the document:
 
 $$
 \mathbf E=-\nabla\phi.

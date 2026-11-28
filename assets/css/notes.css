@@ -32,7 +32,11 @@
 .note-content { min-width: 0; max-width: 49rem; font-size: 1rem; line-height: 1.85; overflow-wrap: break-word; }
 .note-content h2, .note-content h3 { scroll-margin-top: 5rem; line-height: 1.35; margin-top: 1.8em; }
 .note-content h2 { border-bottom: 1px solid var(--note-border); padding-bottom: .35rem; }
-.note-content pre, .note-content table, .note-content mjx-container[display="true"] { max-width: 100%; overflow-x: auto; }
+.note-content pre, .note-content table { max-width: 100%; overflow-x: auto; }
+/* Scroll only unusually wide equations, not the MathJax box itself. */
+.note-math-display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; padding: .5em .1em; margin: .55em 0; text-align: center; }
+.note-math-display mjx-container[display="true"] { overflow: visible; margin: .25em 0 !important; }
+.note-math-inline { white-space: normal; }
 .note-content table { display: block; width: max-content; }
 .note-content img { max-width: 100%; height: auto; }
 .note-footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--note-border); }
