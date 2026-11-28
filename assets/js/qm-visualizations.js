@@ -57,7 +57,7 @@ function makeQMVisuals() {
     let s=txt(380,23,"Two distinct complex wavefunctions",{anchor:"middle",bold:true,size:17});
     [1.6,3.4].forEach((k,i)=>{
       const x=i?416:58,p=axes(x,70,290,114,-4,4,-.8,.8,[-4,0,4],[-.75,0,.75],"x","amplitude");
-      s+=txt(x+145,49,i?"ψ₂(x) = A(x)eⁱᵏ²ˣ":"ψ₁(x) = A(x)eⁱᵏ¹ˣ",{anchor:"middle",size:17,color:C.blue});
+      s+=txt(x+145,49,i?"ψ₂(x) = A(x) exp(i k₂x)":"ψ₁(x) = A(x) exp(i k₁x)",{anchor:"middle",size:17,color:C.blue});
       s+=p.s+poly(p.curve(envelope),C.light,1.3,"4 4")+poly(p.curve(x=>-envelope(x)),C.light,1.3,"4 4");
       s+=poly(p.curve(x=>envelope(x)*Math.cos(k*x)),C.blue,2)+poly(p.curve(x=>envelope(x)*Math.sin(k*x)),C.purple,1.6,"5 3");
       s+=txt(x+145,222,`k${i?"₂":"₁"} = ${k.toFixed(1)}`,{anchor:"middle",size:12,color:C.muted});
@@ -152,7 +152,7 @@ function makeQMVisuals() {
   const matrix=deg=>{const a=deg*Math.PI/180;return {re:[[.5,.5*Math.cos(a)],[.5*Math.cos(a),.5]],im:[[0,-.5*Math.sin(a)],[.5*Math.sin(a),0]],energy:-Math.cos(a)}};
   function rdm(deg=0){
     const m=matrix(deg),cell=64,x1=48,x2=248,y=64;
-    let s=txt(380,25,"State: ( |A⟩ + eⁱᶿ |B⟩ ) / √2",{anchor:"middle",size:18,color:C.blue,bold:true});
+    let s=txt(380,25,"State: ( |A⟩ + exp(iθ) |B⟩ ) / √2",{anchor:"middle",size:18,color:C.blue,bold:true});
     const mat=(x,arr,label)=>{
       let out=txt(x+cell,y-22,label,{anchor:"middle",size:16,bold:true});
       ["A","B"].forEach((v,i)=>{out+=txt(x+(i+.5)*cell,y-6,v,{size:12,anchor:"middle",color:C.muted})+txt(x-8,y+(i+.5)*cell+4,v,{size:12,anchor:"end",color:C.muted})});
@@ -227,7 +227,7 @@ if (typeof document !== "undefined") {
     const input = controls.querySelector("input"), output = controls.querySelector("output"), play = controls.querySelector("[data-qm-play]"), reset = controls.querySelector("[data-qm-reset]");
     if (!input || !output || !play || !reset) return;
     input.min = spec.min; input.max = spec.max; input.step = spec.step; input.value = spec.initial;
-    let value = spec.initial, animation = 0, last = 0, direction = 1;
+    let value = spec.initial, position = value, animation = 0, last = 0, direction = 1;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     function render() {
       graph.innerHTML = spec.render(value);
@@ -241,17 +241,19 @@ if (typeof document !== "undefined") {
     function frame(now) {
       // A deliberately slow parameter sweep, not simulated physical time.
       if (!last || now-last >= 85) {
-        last=now; value += direction*(spec.max-spec.min)/72;
-        if (value >= spec.max) {value=spec.max;direction=-1}
-        if (value <= spec.min) {value=spec.min;direction=1}
+        last=now; position += direction*(spec.max-spec.min)/72;
+        if (position >= spec.max) {position=spec.max;direction=-1}
+        if (position <= spec.min) {position=spec.min;direction=1}
+        value = Number((spec.min+Math.round((position-spec.min)/spec.step)*spec.step).toFixed(6));
         input.value = value;
+        value = Number(input.value);
         render();
       }
       animation=window.requestAnimationFrame(frame);
     }
-    input.addEventListener("input",()=>{stop();value=Number(input.value);render()});
-    play.addEventListener("click",()=>{if(animation){stop();return} last=0;play.textContent="Pause";play.setAttribute("aria-pressed","true");animation=window.requestAnimationFrame(frame)});
-    reset.addEventListener("click",()=>{stop();value=spec.initial;input.value=value;direction=1;render()});
+    input.addEventListener("input",()=>{stop();value=Number(input.value);position=value;render()});
+    play.addEventListener("click",()=>{if(animation){stop();return} last=0;position=value;play.textContent="Pause";play.setAttribute("aria-pressed","true");animation=window.requestAnimationFrame(frame)});
+    reset.addEventListener("click",()=>{stop();value=spec.initial;position=value;input.value=value;direction=1;render()});
     if (reducedMotion.addEventListener) reducedMotion.addEventListener("change",e=>{if(e.matches)stop()});
     document.addEventListener("visibilitychange",()=>{if(document.hidden)stop()});
     // Never auto-play; the static image remains a full fallback without JS.
