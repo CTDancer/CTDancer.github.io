@@ -15,3 +15,4 @@ layout: default
 <footer class="note-footer"><a href="{{ '/notes/' | relative_url }}">← All learning notes</a></footer>
 </main>
 <script defer src="{{ '/assets/js/notes.js' | relative_url }}"></script>
+{% if page.qm_visuals %}<script defer src="{{ '/assets/js/qm-visualizations.js' | relative_url }}?v=1"></script>{% endif %}

@@ -4,6 +4,7 @@ category: Physics
 date: 2026-11-27
 tags: [Quantum Mechanics, Quantum Chemistry, Electronic Structure, Density Matrices]
 summary: "From wavefunctions to Hamiltonians, orbitals, and reduced density matrices"
+qm_visuals: true
 redirect_from:
   - /notes/physics/electron-density-and-electric-fields/
 ---
@@ -33,6 +34,11 @@ Why retain the complex amplitude instead of working directly with its probabilit
 <div class="note-math-display" data-tex="&#124;&#92;psi&#95;A&#43;e&#94;&#123;i&#92;theta&#125;&#92;psi&#95;B&#124;&#94;2&#10;&#61;&#124;&#92;psi&#95;A&#124;&#94;2&#43;&#124;&#92;psi&#95;B&#124;&#94;2&#10;&#43;2&#92;operatorname&#123;Re&#125;&#92;&#33;&#92;left&#91;e&#94;&#123;i&#92;theta&#125;&#92;psi&#95;A&#94;&#42;&#92;psi&#95;B&#92;right&#93;&#46;">&#124;&#92;psi&#95;A&#43;e&#94;&#123;i&#92;theta&#125;&#92;psi&#95;B&#124;&#94;2&#10;&#61;&#124;&#92;psi&#95;A&#124;&#94;2&#43;&#124;&#92;psi&#95;B&#124;&#94;2&#10;&#43;2&#92;operatorname&#123;Re&#125;&#92;&#33;&#92;left&#91;e&#94;&#123;i&#92;theta&#125;&#92;psi&#95;A&#94;&#42;&#92;psi&#95;B&#92;right&#93;&#46;</div>
 
 The last term is the interference term. It depends on the relative phase <span class="note-math-inline" data-tex="&#92;theta">&#92;theta</span>, which is absent from the individual probability densities. Depending on this phase, amplitudes can reinforce or cancel each other. Multiplying an entire state by a common phase <span class="note-math-inline" data-tex="e&#94;&#123;i&#92;theta&#125;">e&#94;&#123;i&#92;theta&#125;</span>, however, does not change its physical predictions. It is relative phase that matters.
+
+<figure class="qm-figure" data-qm-kind="phase-information" markdown="0">
+<div class="qm-graphic"><img src="/images/notes/quantum-mechanics/phase-information.svg" alt="Different states can share the same density." loading="lazy" decoding="async"></div>
+<figcaption><strong>Figure 1. Different states can share the same density.</strong> Analytical illustration. Two normalized one-dimensional wave packets have the same Gaussian envelope A(x) = π⁻¹/⁴ exp(−x²/2), but different spatial phases, k₁x and k₂x. The solid and dashed curves show their real and imaginary parts. Taking the modulus squared removes both phase functions, producing identical densities. Coordinates and wave numbers are dimensionless; this is not a time-evolution simulation. <a class="qm-full" href="/images/notes/quantum-mechanics/phase-information.svg">Static figure</a></figcaption>
+</figure>
 
 Consider a simplified system with one electron and two orthonormal localized states, <span class="note-math-inline" data-tex="&#124;A&#92;rangle">&#124;A&#92;rangle</span> and <span class="note-math-inline" data-tex="&#124;B&#92;rangle">&#124;B&#92;rangle</span>. The states
 
@@ -86,6 +92,11 @@ For example, the site-<span class="note-math-inline" data-tex="A">A</span> occup
 
 This distinction is central to perturbation theory. Orthogonality alone does not prevent an external perturbation from coupling two quantum states.
 
+<figure class="qm-figure" data-qm-kind="operator-projection" markdown="0">
+<div class="qm-graphic"><img src="/images/notes/quantum-mechanics/operator-projection.svg" alt="An operator changes the geometry of an overlap." loading="lazy" decoding="async"></div>
+<figcaption><strong>Figure 2. An operator changes the geometry of an overlap.</strong> Exact two-site model. The blue and purple unit vectors are orthogonal. Projection onto the A basis vector preserves only the A component of the purple state, so its overlap with the blue state is nonzero. The gray vector is the original state, and the dashed line shows the removed B component. <a class="qm-full" href="/images/notes/quantum-mechanics/operator-projection.svg">Static figure</a></figcaption>
+</figure>
+
 ## 3. The Hamiltonian: what determines a molecular state?
 
 Among all quantum operators, the Hamiltonian <span class="note-math-inline" data-tex="&#92;hat H">&#92;hat H</span> occupies a special position. It represents energy and generates time evolution according to the time-dependent Schrödinger equation,
@@ -136,6 +147,16 @@ The nuclear repulsion is constant during an electronic calculation at a fixed ge
 
 Equation (3) explains why geometry and electronic structure are inseparable. Moving nuclei changes the electron–nucleus potential, producing a different electronic eigenvalue problem. A chemical transition state is a saddle point on a reaction energy landscape, not necessarily an electronic excited state: its electrons may still occupy the ground electronic state at that particular geometry. The Born–Oppenheimer separation can become unreliable near electronic degeneracies or when transitions between electronic surfaces matter.
 
+<figure class="qm-figure" data-qm-kind="born-oppenheimer" markdown="0">
+<div class="qm-graphic"><img src="/images/notes/quantum-mechanics/born-oppenheimer.svg" alt="A different nuclear geometry defines a different electronic problem." loading="lazy" decoding="async"></div>
+<div class="qm-controls" hidden>
+<label for="qm-born-oppenheimer">Internuclear separation R (bohr): <output for="qm-born-oppenheimer">2.50 bohr</output></label>
+<input type="range" id="qm-born-oppenheimer" min="0.8" max="6" step="0.05" value="2.5">
+<div class="qm-buttons"><button type="button" data-qm-play aria-pressed="false">Play sweep</button><button type="button" data-qm-reset>Reset</button><span>Parameter sweep, not physical time</span></div>
+</div>
+<figcaption><strong>Figure 3. A different nuclear geometry defines a different electronic problem.</strong> Interactive analytical model of H₂⁺ using a fixed-exponent hydrogen 1s basis (minimal-basis variational approximation). Change the internuclear separation to see the normalized symmetric orbital density in the bond plane and the corresponding energy components. The purple vertical segment is the direct nuclear repulsion 1/R; adding it to the electronic energy yields the total Born–Oppenheimer curve. The slider is a geometry parameter sweep, not a nuclear trajectory. This is not an exact molecular calculation. <a class="qm-full" href="/images/notes/quantum-mechanics/born-oppenheimer.svg">Static figure</a></figcaption>
+</figure>
+
 An external electrostatic potential <span class="note-math-inline" data-tex="&#92;phi&#95;&#123;&#92;mathrm&#123;ext&#125;&#125;&#40;&#92;mathbf r&#41;">&#92;phi&#95;&#123;&#92;mathrm&#123;ext&#125;&#125;&#40;&#92;mathbf r&#41;</span> enters the electronic Hamiltonian as
 
 <div class="note-math-display" data-tex="&#92;hat H&#39;&#95;e&#61;&#92;hat H&#95;e&#45;&#92;sum&#95;i&#92;phi&#95;&#123;&#92;mathrm&#123;ext&#125;&#125;&#40;&#92;mathbf r&#95;i&#41;&#44;">&#92;hat H&#39;&#95;e&#61;&#92;hat H&#95;e&#45;&#92;sum&#95;i&#92;phi&#95;&#123;&#92;mathrm&#123;ext&#125;&#125;&#40;&#92;mathbf r&#95;i&#41;&#44;</div>
@@ -165,6 +186,16 @@ The corresponding densities are
 <div class="note-math-display" data-tex="&#124;&#92;psi&#95;&#92;pm&#124;&#94;2&#61;&#10;&#92;frac&#123;&#124;&#92;phi&#95;A&#124;&#94;2&#43;&#124;&#92;phi&#95;B&#124;&#94;2&#92;pm2&#92;phi&#95;A&#92;phi&#95;B&#125;&#123;2&#40;1&#92;pm S&#41;&#125;&#46;">&#124;&#92;psi&#95;&#92;pm&#124;&#94;2&#61;&#10;&#92;frac&#123;&#124;&#92;phi&#95;A&#124;&#94;2&#43;&#124;&#92;phi&#95;B&#124;&#94;2&#92;pm2&#92;phi&#95;A&#92;phi&#95;B&#125;&#123;2&#40;1&#92;pm S&#41;&#125;&#46;</div>
 
 This is the same interference phenomenon we encountered in Section 1. The symmetric combination increases electron density in the internuclear region relative to the antisymmetric combination, which has a node at the midpoint and a nodal plane between the protons. They are the familiar bonding and antibonding combinations. Their energy ordering must ultimately be established from the Hamiltonian, not merely from a picture of the density.
+
+<figure class="qm-figure" data-qm-kind="orbital-interference" markdown="0">
+<div class="qm-graphic"><img src="/images/notes/quantum-mechanics/orbital-interference.svg" alt="Relative phase controls the density between the nuclei." loading="lazy" decoding="async"></div>
+<div class="qm-controls" hidden>
+<label for="qm-orbital-interference">Relative phase θ: <output for="qm-orbital-interference">0°</output></label>
+<input type="range" id="qm-orbital-interference" min="0" max="180" step="1" value="0">
+<div class="qm-buttons"><button type="button" data-qm-play aria-pressed="false">Play sweep</button><button type="button" data-qm-reset>Reset</button><span>Parameter sweep, not physical time</span></div>
+</div>
+<figcaption><strong>Figure 4. Relative phase controls the density between the nuclei.</strong> Interactive analytical visualization. Two real hydrogen 1s functions are centered at a fixed separation of 2.5 bohr. At each phase θ the superposition is normalized by √(2 + 2S cos θ), where S is their overlap. The left panel is a plane through the bond; the right panel samples that same density along the bond axis, on a fixed absolute scale. The midpoint density becomes exactly zero at θ = π. The sweep is a comparison of states, not physical time evolution. <a class="qm-full" href="/images/notes/quantum-mechanics/orbital-interference.svg">Static figure</a></figcaption>
+</figure>
 
 For a more general linear combination <span class="note-math-inline" data-tex="&#92;psi&#95;a&#61;&#92;sum&#95;&#123;&#92;mu&#125; C&#95;&#123;&#92;mu a&#125;&#92;phi&#95;&#92;mu">&#92;psi&#95;a&#61;&#92;sum&#95;&#123;&#92;mu&#125; C&#95;&#123;&#92;mu a&#125;&#92;phi&#95;&#92;mu</span> (where <span class="note-math-inline" data-tex="&#92;mu">&#92;mu</span> labels basis functions), the effective one-electron eigenvalue equation becomes
 
@@ -206,6 +237,11 @@ A product of independent one-electron functions does not generally have this pro
 
 Expanding the determinant gives <span class="note-math-inline" data-tex="&#91;u&#95;a&#40;x&#95;1&#41;u&#95;b&#40;x&#95;2&#41;&#45;u&#95;b&#40;x&#95;1&#41;u&#95;a&#40;x&#95;2&#41;&#93;&#47;&#92;sqrt2">&#91;u&#95;a&#40;x&#95;1&#41;u&#95;b&#40;x&#95;2&#41;&#45;u&#95;b&#40;x&#95;1&#41;u&#95;a&#40;x&#95;2&#41;&#93;&#47;&#92;sqrt2</span>. Exchanging electron labels swaps its rows and reverses its sign. If both spin orbitals are identical, the determinant vanishes. This is the Pauli exclusion principle in this representation. Two electrons may still share a spatial orbital if their spin functions are different.
 
+<figure class="qm-figure" data-qm-kind="fermion-exchange" markdown="0">
+<div class="qm-graphic"><img src="/images/notes/quantum-mechanics/fermion-exchange.svg" alt="Antisymmetry is a reflection with a sign change." loading="lazy" decoding="async"></div>
+<figcaption><strong>Figure 5. Antisymmetry is a reflection with a sign change.</strong> Analytical toy model. Two same-spin fermions occupy the orthonormal ground and first excited orbitals of a one-dimensional harmonic oscillator. The determinant reduces to Ψ(x₁,x₂) = (x₂ − x₁)u₀(x₁)u₀(x₂). Reflection across x₁ = x₂ swaps particle labels. The signed amplitude changes sign (blue/rose), but its square is unchanged. The node is a same-spin spatial exchange effect, not a universal prohibition on opposite-spin spatial coincidence. <a class="qm-full" href="/images/notes/quantum-mechanics/fermion-exchange.svg">Static figure</a></figcaption>
+</figure>
+
 A single determinant is an important approximation, but a general interacting many-electron state is not a single determinant. In a finite orbital basis, it may be expanded as <span class="note-math-inline" data-tex="&#124;&#92;Psi&#92;rangle&#61;&#92;sum&#95;K c&#95;K&#124;D&#95;K&#92;rangle">&#124;&#92;Psi&#92;rangle&#61;&#92;sum&#95;K c&#95;K&#124;D&#95;K&#92;rangle</span>, where <span class="note-math-inline" data-tex="D&#95;K">D&#95;K</span> are determinants and <span class="note-math-inline" data-tex="c&#95;K">c&#95;K</span> are complex coefficients. Enlarging the basis and allowing more determinants increases representational flexibility at substantial computational cost.
 
 For <span class="note-math-inline" data-tex="&#92;mathrm H&#95;2">&#92;mathrm H&#95;2</span>, the single-determinant picture works qualitatively near equilibrium but becomes inadequate as the bond is stretched toward dissociation. Correctly describing the two separating electrons requires additional configurations. This is one manifestation of electron correlation beyond a single Hartree–Fock determinant. Antisymmetry already produces exchange effects within a determinant; correlation in the conventional quantum-chemical sense goes beyond that mean-field description.
@@ -221,6 +257,16 @@ Because all electrons are indistinguishable, their one-electron marginal distrib
 <div class="note-math-display" data-tex="&#92;boxed&#123;n&#40;&#92;mathbf r&#41;&#61;N&#92;sum&#95;s&#92;int&#10;&#124;&#92;Psi&#40;&#40;&#92;mathbf r&#44;s&#41;&#44;x&#95;2&#44;&#92;ldots&#44;x&#95;N&#41;&#124;&#94;2&#92;&#44;dx&#95;2&#92;cdots dx&#95;N&#46;&#125;&#92;tag&#123;4&#125;">&#92;boxed&#123;n&#40;&#92;mathbf r&#41;&#61;N&#92;sum&#95;s&#92;int&#10;&#124;&#92;Psi&#40;&#40;&#92;mathbf r&#44;s&#41;&#44;x&#95;2&#44;&#92;ldots&#44;x&#95;N&#41;&#124;&#94;2&#92;&#44;dx&#95;2&#92;cdots dx&#95;N&#46;&#125;&#92;tag&#123;4&#125;</div>
 
 The factor <span class="note-math-inline" data-tex="N">N</span> converts the normalized one-electron marginal into the total electron number density. Consequently, <span class="note-math-inline" data-tex="n&#40;&#92;mathbf r&#41;&#92;ge0">n&#40;&#92;mathbf r&#41;&#92;ge0</span> and <span class="note-math-inline" data-tex="&#92;int n&#40;&#92;mathbf r&#41;&#92;&#44;d&#94;3&#92;mathbf r&#61;N">&#92;int n&#40;&#92;mathbf r&#41;&#92;&#44;d&#94;3&#92;mathbf r&#61;N</span>. Integrating over a region gives the expected number of electrons there, not generally a probability bounded by one. The electronic charge density is <span class="note-math-inline" data-tex="&#45;en&#40;&#92;mathbf r&#41;">&#45;en&#40;&#92;mathbf r&#41;</span> in SI units, or <span class="note-math-inline" data-tex="&#45;n&#40;&#92;mathbf r&#41;">&#45;n&#40;&#92;mathbf r&#41;</span> in atomic units.
+
+<figure class="qm-figure" data-qm-kind="density-marginalization" markdown="0">
+<div class="qm-graphic"><img src="/images/notes/quantum-mechanics/density-marginalization.svg" alt="Marginalization turns a joint distribution into a density." loading="lazy" decoding="async"></div>
+<div class="qm-controls" hidden>
+<label for="qm-density-marginalization">Selected coordinate x₁: <output for="qm-density-marginalization">-1.00</output></label>
+<input type="range" id="qm-density-marginalization" min="-2.8" max="2.8" step="0.05" value="-1">
+<div class="qm-buttons"><button type="button" data-qm-play aria-pressed="false">Play sweep</button><button type="button" data-qm-reset>Reset</button><span>Parameter sweep, not physical time</span></div>
+</div>
+<figcaption><strong>Figure 6. Marginalization turns a joint distribution into a density.</strong> Interactive continuation of the same two-fermion oscillator model. Move the purple line to select one observation coordinate x₁ = q. The middle plot shows twice the unnormalized joint-probability slice, not a conditional probability. Its shaded integral is n(q), the green point on the right. The integral of the full one-electron density is two. All coordinates are in dimensionless oscillator units. <a class="qm-full" href="/images/notes/quantum-mechanics/density-marginalization.svg">Static figure</a></figcaption>
+</figure>
 
 There is an equivalent operator formulation. Introduce the three-dimensional Dirac delta distribution, characterized by
 
@@ -278,6 +324,16 @@ The two diagonals are identical: both states have site occupations <span class="
 
 Here <span class="note-math-inline" data-tex="&#92;gamma&#95;&#123;AB&#125;&#61;&#92;langle A&#124;&#92;hat&#92;gamma&#124;B&#92;rangle">&#92;gamma&#95;&#123;AB&#125;&#61;&#92;langle A&#124;&#92;hat&#92;gamma&#124;B&#92;rangle</span>. The result shows how electronic coherence affects energy even when the site occupations are unchanged. These are diagonals in a localized orbital basis, not necessarily equal continuous position densities for actual overlapping atomic orbitals.
 
+<figure class="qm-figure" data-qm-kind="density-matrix-coherence" markdown="0">
+<div class="qm-graphic"><img src="/images/notes/quantum-mechanics/density-matrix-coherence.svg" alt="The diagonal stays fixed while coherence and energy change." loading="lazy" decoding="async"></div>
+<div class="qm-controls" hidden>
+<label for="qm-density-matrix-coherence">Relative phase θ: <output for="qm-density-matrix-coherence">0°</output></label>
+<input type="range" id="qm-density-matrix-coherence" min="0" max="360" step="1" value="0">
+<div class="qm-buttons"><button type="button" data-qm-play aria-pressed="false">Play sweep</button><button type="button" data-qm-reset>Reset</button><span>Parameter sweep, not physical time</span></div>
+</div>
+<figcaption><strong>Figure 7. The diagonal stays fixed while coherence and energy change.</strong> Interactive exact one-electron model in the orthonormal A/B basis, with H_AB = H_BA = −t and zero diagonal energies. Vary the relative phase θ. The real and imaginary parts of γ_AB are cos θ/2 and −sin θ/2; γ_BA is their complex conjugate. The green-outlined diagonal entries (1/2, 1/2) remain fixed, whereas the energy varies as −t cos θ. At θ = 0 and π the matrices reduce exactly to γ₊ and γ₋ in the article. This is a state-parameter sweep, not an assumed physical evolution. <a class="qm-full" href="/images/notes/quantum-mechanics/density-matrix-coherence.svg">Static figure</a></figcaption>
+</figure>
+
 ### Natural orbitals and occupations
 
 The 1-RDM is Hermitian and positive semidefinite, with <span class="note-math-inline" data-tex="&#92;operatorname&#123;Tr&#125;&#40;&#92;hat&#92;gamma&#41;&#61;N">&#92;operatorname&#123;Tr&#125;&#40;&#92;hat&#92;gamma&#41;&#61;N</span>. It can consequently be diagonalized. Its normalized eigenfunctions <span class="note-math-inline" data-tex="&#92;varphi&#95;k&#40;x&#41;">&#92;varphi&#95;k&#40;x&#41;</span> are called *natural spin orbitals*, and its eigenvalues <span class="note-math-inline" data-tex="f&#95;k">f&#95;k</span> are *natural occupation numbers*:
@@ -317,6 +373,11 @@ where <span class="note-math-inline" data-tex="X&#61;&#40;x&#95;3&#44;&#92;ldots
 <div class="note-math-display" data-tex="n&#95;2&#40;&#92;mathbf r&#44;&#92;mathbf r&#39;&#41;&#61;&#92;sum&#95;&#123;s&#44;s&#39;&#125;&#92;Gamma&#40;&#40;&#92;mathbf r&#44;s&#41;&#44;&#40;&#92;mathbf r&#39;&#44;s&#39;&#41;&#59;&#40;&#92;mathbf r&#44;s&#41;&#44;&#40;&#92;mathbf r&#39;&#44;s&#39;&#41;&#41;&#46;">n&#95;2&#40;&#92;mathbf r&#44;&#92;mathbf r&#39;&#41;&#61;&#92;sum&#95;&#123;s&#44;s&#39;&#125;&#92;Gamma&#40;&#40;&#92;mathbf r&#44;s&#41;&#44;&#40;&#92;mathbf r&#39;&#44;s&#39;&#41;&#59;&#40;&#92;mathbf r&#44;s&#41;&#44;&#40;&#92;mathbf r&#39;&#44;s&#39;&#41;&#41;&#46;</div>
 
 Unlike the two arguments of <span class="note-math-inline" data-tex="&#92;gamma">&#92;gamma</span>, the two position arguments of <span class="note-math-inline" data-tex="n&#95;2">n&#95;2</span> refer to two distinct electrons. The pair density measures their joint spatial distribution and generally cannot be obtained simply by multiplying the one-electron densities. It reflects exchange and correlation as well as electrostatic repulsion.
+
+<figure class="qm-figure" data-qm-kind="pair-density" markdown="0">
+<div class="qm-graphic"><img src="/images/notes/quantum-mechanics/pair-density.svg" alt="The same one-electron density does not specify the pair density." loading="lazy" decoding="async"></div>
+<figcaption><strong>Figure 8. The same one-electron density does not specify the pair density.</strong> Analytical illustration using the same two-fermion determinant. The true ordered-pair density on the left is 2|Ψ|². On the right, the product n(x₁)n(x₂)/2 is a mathematical independent reference with the same ordered-pair count, not an admissible same-spin two-fermion state. Both integrate to two, but the actual pair density vanishes along the exchange diagonal. This difference is present even for a single determinant. <a class="qm-full" href="/images/notes/quantum-mechanics/pair-density.svg">Static figure</a></figcaption>
+</figure>
 
 In particular, the electron–electron interaction energy is
 

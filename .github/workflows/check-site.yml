@@ -64,5 +64,33 @@ jobs:
             notes.each { |n| abort("Broken note URL: #{n["url"]}") unless File.file?(File.join("_site", n["url"].sub(%r{^/}, ""), "index.html")) }
           '
           python3 .github/scripts/prepare_note.py .github/note_sources/physics/quantum-mechanics-of-molecules.md _notes/physics/quantum-mechanics-of-molecules.md --check --rendered _site/notes/physics/quantum-mechanics-of-molecules/index.html --tables 1 --rows 7 --headings 10
+          node assets/js/qm-visualizations.js
+          python3 - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          class Figures(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.figures = []
+                  self.images = []
+                  self.controls = 0
+              def handle_starttag(self, tag, attrs):
+                  a = dict(attrs)
+                  if tag == "figure" and "data-qm-kind" in a:
+                      self.figures.append(a["data-qm-kind"])
+                  if tag == "img" and a.get("src", "").startswith("/images/notes/quantum-mechanics/"):
+                      self.images.append(a["src"])
+                  if tag == "input" and a.get("id", "").startswith("qm-"):
+                      self.controls += 1
+          root = Path("_site")
+          parser = Figures()
+          parser.feed((root / "notes/physics/quantum-mechanics-of-molecules/index.html").read_text())
+          assert len(parser.figures) == len(set(parser.figures)) == 8, parser.figures
+          assert len(parser.images) == 8
+          assert parser.controls == 4
+          for img in parser.images:
+              assert (root / img.lstrip("/")).is_file(), img
+          print("All eight article figures, four interactive controls and static image links verified.")
+          PY
           node --check assets/js/notes.js
           node --check assets/js/mathjax-config.js
