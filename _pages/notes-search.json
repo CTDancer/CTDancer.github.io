@@ -4,10 +4,11 @@ permalink: /notes/search.json
 ---
 [
 {% for note in site.notes %}
+{% capture note_category %}{% include note-category.html category=note.category %}{% endcapture %}{% assign note_category = note_category | strip %}
   {
     "title": {{ note.title | jsonify }},
     "url": {{ note.url | relative_url | jsonify }},
-    "category": {{ note.category | jsonify }},
+    "category": {{ note_category | jsonify }},
     "tags": {{ note.tags | jsonify }},
     "summary": {{ note.summary | jsonify }},
     "content": {{ note.content | strip_html | normalize_whitespace | jsonify }}

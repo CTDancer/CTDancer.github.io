@@ -1,5 +1,5 @@
 /* Scoped additions: the original AcademicPages theme remains intact. */
-.notes-shell { --note-green: #306c53; --note-muted: #52665d; --note-border: #dce8e0; max-width: 77rem; margin: 0 auto; padding: 2.5rem 1.3rem 4rem; line-height: 1.65; }
+.notes-shell { --note-green: #306c53; --note-muted: #52665d; --note-border: #dce8e0; width: 100%; max-width: 92rem; box-sizing: border-box; margin: 0 auto; padding: 2.5rem clamp(1.3rem, 2.2vw, 2.2rem) 4rem; line-height: 1.65; }
 .notes-shell [hidden] { display: none !important; }
 .notes-hero { border-bottom: 1px solid var(--note-border); padding-bottom: 1.3rem; margin-bottom: 1.5rem; }
 .notes-kicker { color: var(--note-green); font-weight: 600; font-size: .8rem; letter-spacing: .04em; margin: 0 0 .4rem; }
@@ -11,11 +11,10 @@
 .notes-search label { display: block; font-size: .85rem; font-weight: 600; }
 .notes-search input { width: 100%; padding: .8rem 1rem; background: #fff; color: #243a30; border: 1px solid #bacfc1; border-radius: .55rem; font: inherit; }
 .notes-search p { color: var(--note-muted); font-size: .8rem; margin: .4rem 0 0; }
-.notes-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .8rem; margin: 1rem 0 2rem; }
-.notes-topic { display: flex; flex-direction: column; gap: .25rem; padding: 1rem; border: 1px solid var(--note-border); border-radius: .65rem; background: #f7faf8; text-decoration: none; }
-.notes-topic:hover { border-color: #78a38b; text-decoration: none; }
-.notes-topic span, .notes-topic small { color: var(--note-muted); font-size: .8rem; }
-.notes-topic small { margin-top: .4rem; }
+.notes-topics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin: 1rem 0 2rem; }
+.notes-topic { display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 7.5rem; padding: 1.2rem .8rem; border: 1px solid var(--note-border); border-radius: .65rem; background: #f7faf8; text-align: center; text-decoration: none; }
+.notes-topic:hover { border-color: #78a38b; background: #edf4ef; text-decoration: none; }
+.notes-topic strong { font-size: clamp(1.1rem, 1.7vw, 1.5rem); line-height: 1.28; font-weight: 700; overflow-wrap: normal; }
 .notes-group { margin: 2rem 0; scroll-margin-top: 5rem; }
 .notes-group h2 { font-size: 1.35rem; border-bottom: 1px solid var(--note-border); padding-bottom: .4rem; }
 .note-card { padding: .9rem 0; border-bottom: 1px solid var(--note-border); }
@@ -29,7 +28,7 @@
 .note-toc ol { padding-left: 1.2rem; margin-top: .45rem; }
 .note-toc li { margin: .3rem 0; }
 .note-toc-sub { margin-left: .8rem !important; font-size: .93em; }
-.note-content { min-width: 0; max-width: 49rem; font-size: 1rem; line-height: 1.85; overflow-wrap: break-word; }
+.note-content { min-width: 0; width: 100%; max-width: 68rem; font-size: 1rem; line-height: 1.85; overflow-wrap: break-word; }
 .note-content h2, .note-content h3 { scroll-margin-top: 5rem; line-height: 1.35; margin-top: 1.8em; }
 .note-content h2 { border-bottom: 1px solid var(--note-border); padding-bottom: .35rem; }
 .note-content pre, .note-content table { max-width: 100%; overflow-x: auto; }
@@ -50,7 +49,9 @@
   .note-columns:has(.note-toc:not([hidden])) { grid-template-columns: 14rem minmax(0, 1fr); }
   .note-toc { position: sticky; top: 5rem; align-self: start; max-height: 75vh; overflow-y: auto; }
 }
-@media (max-width: 38em) { .notes-topics { grid-template-columns: 1fr; } .notes-shell { padding: 1.3rem 1rem 3rem; } }
+@media (max-width: 60em) { .notes-topics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 38em) { .notes-shell { padding: 1.3rem 1rem 3rem; } .notes-topic { min-height: 6.5rem; padding: .8rem .45rem; } .notes-topic strong { font-size: 1.04rem; } }
+@media (max-width: 23em) { .notes-topics { grid-template-columns: 1fr; } }
 @media print { .cv-print, .notes-search, .notes-topics, .note-toc, .note-footer { display: none !important; } .notes-shell { padding: 0; } .note-content { max-width: none; } }
 
 /* Publications: wide, caption-free method figures, preserving the original aspect ratio. */
@@ -109,3 +110,9 @@
 .note-content :is(.qm-buttons,.sf-buttons) span { font-size: .72rem; color: #65717b; }
 @media (max-width: 38em) { .note-content :is(.qm-graphic,.sf-graphic) img, .note-content :is(.qm-graphic,.sf-graphic) svg { min-width: 510px; } }
 @media print { .note-content :is(.qm-controls,.sf-controls), .note-content :is(.qm-full,.sf-full) { display: none !important; } }
+
+/* Keep the current section visible after the pointer leaves the masthead.
+   The same state travels with links into the existing mobile overflow menu. */
+.masthead .greedy-nav a.masthead__current { color: #306c53; font-weight: 600; }
+.masthead .greedy-nav .visible-links a.masthead__current::before { background: #306c53; transform: scaleX(1); height: 3px; }
+.masthead .greedy-nav .hidden-links a.masthead__current { color: #306c53; text-decoration: underline; text-underline-offset: .3em; text-decoration-thickness: 2px; }

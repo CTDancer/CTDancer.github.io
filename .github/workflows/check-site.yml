@@ -106,3 +106,4 @@ jobs:
           python3 -m pip install playwright==1.57.0
           python3 -m playwright install --with-deps chromium
           python3 .github/scripts/check_figure_browser.py
+          python3 .github/scripts/check_notes_layout.py

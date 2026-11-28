@@ -18,7 +18,18 @@
               {% else %}
               {% assign domain = base_path %}
             {% endif %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ menu_url }}">{{ link.title }}</a></li>
+            {% assign current_state = '' %}
+            {% assign current_url = page.url | default: '/' %}
+            {% if current_url == link.url or current_url == menu_url %}
+              {% assign current_state = 'page' %}
+            {% elsif link.url == '/' %}
+              {% if current_url == '/index.html' %}{% assign current_state = 'page' %}{% endif %}
+            {% else %}
+              {% assign prefix_size = link.url | size %}
+              {% assign current_prefix = current_url | slice: 0, prefix_size %}
+              {% if current_prefix == link.url %}{% assign current_state = 'location' %}{% endif %}
+            {% endif %}
+            <li class="masthead__menu-item"><a href="{{ domain }}{{ menu_url }}"{% if current_state != '' %} class="masthead__current" aria-current="{{ current_state }}"{% endif %}>{{ link.title }}</a></li>
           {% endfor %}
         </ul>
         <ul class="hidden-links hidden"></ul>

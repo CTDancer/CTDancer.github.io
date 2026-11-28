@@ -8,7 +8,7 @@ author_profile: false
 <header class="notes-hero">
 <p class="notes-kicker">Personal knowledge base</p>
 <h1>Learning Notes</h1>
-<p>Exploring the foundations of mathematics, physics, chemistry, biology, artificial intelligence, and computational science. A living collection of study notes, not peer-reviewed research.</p>
+<p>A growing collection of personal study notes, from foundational ideas to research-related topics. These notes are not peer-reviewed research.</p>
 </header>
 <div class="notes-search">
 <label for="note-query">Search learning notes</label>
@@ -17,29 +17,37 @@ author_profile: false
 </div>
 <nav class="notes-topics" aria-label="Note subjects">
 {% for topic in site.data.note_topics %}
-{% assign topic_notes = site.notes | where: "category", topic.name %}
-<a href="#topic-{{ topic.name | slugify }}" class="notes-topic"><strong>{{ topic.name | escape }}</strong><span>{{ topic.description | escape }}</span><small>{{ topic_notes.size }} {% if topic_notes.size == 1 %}note{% else %}notes{% endif %}</small></a>
+<a href="#topic-{{ topic.name | slugify }}" class="notes-topic"><strong>{{ topic.name | escape }}</strong></a>
 {% endfor %}
 </nav>
-{% assign groups = site.notes | group_by: "category" | sort: "name" %}
+{% assign entries = site.notes | sort: "date" | reverse %}
 {% for topic in site.data.note_topics %}
-{% assign entries = site.notes | where: "category", topic.name | sort: "date" | reverse %}
 <section class="notes-group" id="topic-{{ topic.name | slugify }}">
 <h2>{{ topic.name | escape }}</h2>
+{% assign found = false %}
 {% for note in entries %}
+{% if note.category == topic.name or topic.aliases contains note.category %}
+{% assign found = true %}
 {% include note-card.html note=note %}
-{% else %}
-<p class="notes-empty">Notes will be added as I study this subject.</p>
+{% endif %}
 {% endfor %}
+{% unless found %}
+<p class="notes-empty">Notes will be added as I study this subject.</p>
+{% endunless %}
 </section>
 {% endfor %}
+{% comment %}Never silently hide a note whose category has not yet been migrated.{% endcomment %}
+{% assign groups = site.notes | group_by: "category" | sort: "name" %}
 {% for group in groups %}
-{% assign names = site.data.note_topics | map: "name" %}
-{% unless names contains group.name %}
+{% assign recognized = false %}
+{% for topic in site.data.note_topics %}
+{% if group.name == topic.name or topic.aliases contains group.name %}{% assign recognized = true %}{% endif %}
+{% endfor %}
+{% unless recognized %}
 <section class="notes-group" id="topic-{{ group.name | slugify }}">
 <h2>{{ group.name | default: "Other" | escape }}</h2>
-{% assign entries = group.items | sort: "date" | reverse %}
-{% for note in entries %}{% include note-card.html note=note %}{% endfor %}
+{% assign other_entries = group.items | sort: "date" | reverse %}
+{% for note in other_entries %}{% include note-card.html note=note %}{% endfor %}
 </section>
 {% endunless %}
 {% endfor %}

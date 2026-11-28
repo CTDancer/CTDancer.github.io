@@ -1,12 +1,9 @@
 - name: Mathematics
-  description: "Linear algebra, optimization, geometry, probability"
 - name: Physics
-  description: "Electrostatics, quantum mechanics, statistical mechanics"
-- name: Chemistry
-  description: "Electronic structure, chemical bonds, reaction mechanisms"
-- name: Biology & Biochemistry
-  description: "Enzymes, proteins, molecular biology"
+- name: "Chemistry, Biology & Biochemistry"
+  aliases:
+    - Chemistry
+    - "Biology & Biochemistry"
+    - Biology
+    - Biochemistry
 - name: Artificial Intelligence
-  description: "Generative modeling, machine learning, representation learning"
-- name: Computational Science
-  description: "Density functional theory, molecular simulation, numerical methods"

@@ -1,0 +1,3 @@
+{% assign resolved_note_category = include.category %}
+{% for topic in site.data.note_topics %}{% if topic.name == include.category or topic.aliases contains include.category %}{% assign resolved_note_category = topic.name %}{% break %}{% endif %}{% endfor %}
+{{- resolved_note_category -}}
