@@ -5,6 +5,7 @@ window.MathJax = {
     displayMath: [['\\[', '\\]'], ['$$', '$$']],
     processEscapes: true
   },
+  svg: {fontCache: "none"},
   startup: {
     pageReady: function () {
       // Recover the complete TeX only after Markdown parsing is finished.

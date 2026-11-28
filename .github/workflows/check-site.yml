@@ -18,6 +18,12 @@ jobs:
         with:
           ruby-version: '3.3'
           bundler-cache: true
+      - name: Set up scientific figure tools
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned MathJax
+        run: npm install --prefix .github/figure-tools --ignore-scripts --no-audit --no-fund
       - name: Build site
         env:
           JEKYLL_ENV: production
@@ -64,7 +70,8 @@ jobs:
             notes.each { |n| abort("Broken note URL: #{n["url"]}") unless File.file?(File.join("_site", n["url"].sub(%r{^/}, ""), "index.html")) }
           '
           python3 .github/scripts/prepare_note.py .github/note_sources/physics/quantum-mechanics-of-molecules.md _notes/physics/quantum-mechanics-of-molecules.md --check --rendered _site/notes/physics/quantum-mechanics-of-molecules/index.html --tables 1 --rows 7 --headings 10
-          node assets/js/qm-visualizations.js
+          NODE_PATH="$PWD/.github/figure-tools/node_modules" node assets/js/qm-visualizations.js
+          node --check assets/js/scientific-figure.js
           python3 - <<'PY'
           from pathlib import Path
           from html.parser import HTMLParser
@@ -94,3 +101,8 @@ jobs:
           PY
           node --check assets/js/notes.js
           node --check assets/js/mathjax-config.js
+      - name: Verify math and interactive scientific figures in Chromium
+        run: |
+          python3 -m pip install playwright==1.57.0
+          python3 -m playwright install --with-deps chromium
+          python3 .github/scripts/check_figure_browser.py

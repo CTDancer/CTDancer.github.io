@@ -2,8 +2,9 @@
 
 The plots are generated from analytical models by assets/js/qm-visualizations.js. The same render functions run in the browser and produce SVG files for static/JavaScript-free reading.
 
-Regenerate with: node assets/js/qm-visualizations.js --write
-Verify model invariants and reproduce all eight SVGs byte for byte with: node assets/js/qm-visualizations.js
+Install: npm install --prefix .github/figure-tools --ignore-scripts --no-audit --no-fund
+Regenerate: NODE_PATH="$PWD/.github/figure-tools/node_modules" node assets/js/qm-visualizations.js --write
+Verify model invariants and reproduce all eight SVGs byte for byte with: NODE_PATH="$PWD/.github/figure-tools/node_modules" node assets/js/qm-visualizations.js
 
 Models:
 - Phase: normalized one-dimensional Gaussian wave packets with wave numbers 1.6 and 3.4.
@@ -16,3 +17,5 @@ Models:
 Signed amplitudes and matrix entries use a zero-centered blue/rose palette; nonnegative densities use a sequential green palette; energies use ochre. All interactive sweeps vary a model parameter, not physical time. No autoplay. Static SVGs and captions are provided for accessibility.
 
 The article's original formulas are preserved by the existing prepare_note.py preprocessing script. All figures are original analytical illustrations, not experimental data or realistic quantum-chemistry simulations.
+
+All formal mathematics is now rendered by the shared scientific-figure.js API using MathJax SVG glyph paths. See SCIENTIFIC_FIGURE_GUIDE.md.

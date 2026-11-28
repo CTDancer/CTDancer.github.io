@@ -1,0 +1,13 @@
+{% assign sf_src = include.src | relative_url %}
+{% assign sf_kind = include.kind | default: include.id %}
+<figure id="{{ include.id | escape }}" class="sf-figure" data-sf-kind="{{ sf_kind | escape }}" markdown="0">
+  <div class="sf-graphic"><img src="{{ sf_src }}" alt="{{ include.alt | default: include.title | escape }}" loading="lazy" decoding="async"></div>
+  {% if include.interactive %}
+  <div class="sf-controls" hidden>
+    <label for="sf-control-{{ include.id | escape }}">{{ include.label | escape }}: <output for="sf-control-{{ include.id | escape }}"></output></label>
+    <input type="range" id="sf-control-{{ include.id | escape }}">
+    <div class="sf-buttons"><button type="button" data-sf-play aria-pressed="false">Play sweep</button><button type="button" data-sf-reset>Reset</button><span>{{ include.progression | default: "Parameter sweep, not physical time" | escape }}</span></div>
+  </div>
+  {% endif %}
+  <figcaption>{% if include.title %}<strong>{{ include.title | escape }}</strong> {% endif %}{{ include.caption | escape }} <a class="sf-full" href="{{ sf_src }}">Static figure</a></figcaption>
+</figure>

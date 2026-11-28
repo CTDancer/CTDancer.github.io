@@ -9,3 +9,5 @@
 7. Everything committed to the public repository is public, even if not listed in navigation. Keep unpublished experiments and private notes elsewhere.
 
 The CV is maintained as a public-facing HTML summary with browser PDF export. Publications are maintained in _data/publication_list.yml. Only add publication links and acceptance claims that are supported by the author's records or verified sources.
+
+For explanatory figures, use the reusable Scientific Figure component in [SCIENTIFIC_FIGURE_GUIDE.md](SCIENTIFIC_FIGURE_GUIDE.md). It provides real LaTeX outlines, SVG fallback, and shared interaction controls. Generate static files before committing; do not use manually composed Unicode math labels.
